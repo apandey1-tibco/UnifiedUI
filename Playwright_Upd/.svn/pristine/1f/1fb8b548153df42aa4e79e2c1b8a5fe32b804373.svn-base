@@ -1,0 +1,39 @@
+import { Page, Locator } from "@playwright/test";
+export function convertStringToArray(text: string) {
+  const arrayTxt = text.toString().replace(/\t|\n/g, " ").split(" ");
+  return arrayTxt;
+}
+
+export function formatDate() {
+  const date = new Date();
+  const day = date.getDate(); // Get day
+  const month = date.toLocaleString("en-GB", { month: "short" }); // Get short month name
+  const year = date.getFullYear(); // Get year
+  const formattedDate = `${day} ${month} ${year}`;
+  return formattedDate;
+}
+
+export async function tableHeader(page: Page) {
+  const col = page.locator("twc-table-head-cell");
+  let headerArray: string[] = [];
+  for (let i = 0; i < (await col.count()); i++) {
+    const a = await col.nth(i).innerText();
+    headerArray.push(a);
+  }
+  return headerArray;
+}
+export async function getTableRowContents(page: Page, name: string) {
+  const row = page.locator("twc-table-row");
+  let rowArray: string[] = [];
+
+  const rowText = row.filter({
+    has: page.locator("twc-table-cell"),
+    hasText: `${name}`,
+  });
+  const txt = await rowText.innerText();
+  return txt.toString().split(/[\t\n]/g);
+}
+export async function getFirstRowContents(page: Page) {
+  const txt = await page.locator("twc-table-row").first().innerText();
+  return txt.toString().split(/[\t\n]/g);
+}

@@ -1,0 +1,507 @@
+import { Locator, Page, expect } from "@playwright/test";
+import * as utility from "../fixtures/utility";
+
+export class AuditProcessTemplatesPage {
+  readonly page: Page;
+  readonly processTemplatesTable: Locator;
+  readonly processTemplatesrows: Locator;
+  readonly processTemplatesCell: Locator;
+
+  readonly filterIcon: Locator;
+  readonly stateFilterIcon: Locator;
+  readonly applyFilterBtn: Locator;
+  readonly cancelBtn: Locator;
+  readonly clearFilters: Locator;
+  readonly submitBtn: Locator;
+  readonly closeBtn: Locator;
+  readonly resetAllBtn: Locator;
+  readonly saveFilterBtn: Locator;
+  readonly ptFilterHeading: Locator;
+  readonly stFilterHeading: Locator;
+  readonly stateDdl: Locator;
+  readonly stateDdlOption: Locator;
+  readonly filterTxtBox: Locator;
+  readonly saveBtn: Locator;
+  readonly savedFilterOption: Locator;
+  readonly editFilterBtn: Locator;
+  readonly deleteFilterBtn: Locator;
+  readonly dismissBtn: Locator;
+  readonly ptInputName: Locator;
+
+  readonly coloumnIcon: Locator;
+  readonly refreshIcon: Locator;
+  readonly columnSelectorIcon: Locator;
+  readonly processTemplatesHeader: Locator;
+  readonly allProcessTemplatesHeader: Locator;
+  readonly saveBtnForSate: Locator;
+  readonly processTempRows: Locator;
+  readonly additionAttributeSection: Locator;
+  readonly processInstances: Locator;
+  readonly processTempTableHeader: Locator;
+  readonly processInstancesCases: Locator;
+  readonly columnSelector: Locator;
+  readonly processTemplates: Locator;
+  readonly ptProcInstRows: Locator;
+  readonly backoProcessTemplatesBtn: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.processTemplatesTable = page.locator("twc-table");
+    //this.processTemplatesHeader = page.locator('twc-table-head-cell')
+    this.processTemplatesrows = page.locator("twc-table-row");
+    this.processTemplatesCell = page.locator("twc-table-cell");
+
+    this.filterIcon = page
+      .locator("twc-toolbar-item")
+      .filter({ hasText: "Filter Filter" })
+      .locator("svg");
+
+    this.stateFilterIcon = page.locator("twc-icon[name='add-new']");
+    this.applyFilterBtn = page.getByRole("button", { name: "Apply Filters" });
+    this.cancelBtn = page.getByText("Cancel");
+    this.clearFilters = page.getByRole("button", {
+      name: "Clear filter",
+    });
+    this.submitBtn = page.getByText("Submit");
+    this.closeBtn = page.getByTitle("Close");
+    this.resetAllBtn = page.getByRole("button", { name: "Reset all" });
+    //this.saveFilterBtn = page.getByRole('button', { name: 'Save' })
+    this.saveFilterBtn = page.locator("twc-icon[name='savefilter']");
+
+    this.ptFilterHeading = page
+      .locator(".filter-container")
+      .locator(".header__title")
+      .getByText("Filters");
+
+    this.stFilterHeading = page
+      .locator(".content-section")
+      .locator("[part='clear-filter-btn-wrapper']")
+      .getByText("Clear filter");
+
+    this.stateDdl = page.locator("#CURRENT_STATE twc-popup div").first();
+
+    this.stateDdlOption = page.getByRole("option", {
+      name: "Deployed",
+      exact: true,
+    });
+
+    this.filterTxtBox = page.getByRole("textbox");
+    //.getByPlaceholder('Save filter');
+
+    this.saveBtn = page
+      .locator("twc-dialog")
+      .locator("twc-button")
+      .getByText("Save");
+
+    this.saveBtnForSate = page.getByRole("button", { name: "Save" });
+
+    this.dismissBtn = page
+      .locator("twc-alert-dialog")
+      .locator("twc-button")
+      .getByText("Dismiss");
+
+    this.editFilterBtn = page
+      .getByRole("menuitem", { name: "Edit filter" })
+      .locator("div")
+      .first();
+
+    this.deleteFilterBtn = page
+      .getByRole("menuitem", { name: "Delete filter" })
+      .locator("div")
+      .first();
+
+    this.ptInputName = page.getByRole("textbox");
+
+    this.refreshIcon = page.locator("[tooltipcontent='Refresh']");
+    this.columnSelectorIcon = page.locator(
+      "[tooltipcontent='Column Selector']"
+    );
+    this.processTemplatesHeader = page.getByTitle("Process templates", {
+      exact: true,
+    });
+    this.allProcessTemplatesHeader = page
+      .locator("twc-content-pane")
+      .getByText("All Process templates");
+
+    this.processTempRows = page.locator("twc-table-row");
+    this.additionAttributeSection = page.locator(
+      "twc-tab[panel='additionalAttributes']"
+    );
+    this.processInstances = page
+      .locator("twc-button")
+      .locator("text=Process instances")
+      .first();
+    this.processInstancesCases = page
+      .locator("twc-button")
+      .locator("text=Applications")
+      .first();
+    this.columnSelector = page.locator(
+      "twc-toolbar-item[tooltipcontent='Column Selector']"
+    );
+    this.ptProcInstRows = page.locator("twc-table-row");
+
+    //this.processInstances = page.locator("text=Process instances").first();
+    this.backoProcessTemplatesBtn = page
+      .locator("twc-button")
+      .locator("text=Back to Process Templates");
+  }
+
+  /**
+   * Get all header values as an array of strings.
+   * @returns {Promise<string[]>}
+   */
+  async getHeaderValues(): Promise<string[]> {
+    const headerTexts = await this.processTemplatesHeader.evaluateAll(
+      (workItemTableHeader) =>
+        workItemTableHeader.map((header) => header.textContent?.trim() || "")
+    );
+    return headerTexts;
+  }
+
+  /**
+   * Validate the headers against the expected list of headers.
+   * @param {string[]} expectedHeaders - The expected header values.
+   * @returns {Promise<boolean>} - Returns true if the headers match.
+   */
+  async validateHeaders(expectedHeaders: string[]): Promise<boolean> {
+    const actualHeaders = await this.getHeaderValues();
+
+    // Normalize headers by trimming and converting to lowercase
+    const normalizedActualHeaders = actualHeaders.map((header) =>
+      header.trim().toLowerCase()
+    );
+    const normalizedExpectedHeaders = expectedHeaders.map((header) =>
+      header.trim().toLowerCase()
+    );
+
+    return (
+      JSON.stringify(normalizedActualHeaders) ===
+      JSON.stringify(normalizedExpectedHeaders)
+    );
+  }
+
+  /**
+   * Wait for the table headers to be visible.
+   */
+  async waitForHeadersToLoad(): Promise<void> {
+    await this.processTemplatesHeader.first().waitFor({ state: "visible" });
+  }
+
+  // Method to fetch the data of a specific row by index
+  async getRowData(rowIndex: number): Promise<string[]> {
+    const row = this.processTemplatesrows.nth(rowIndex);
+    const cells = row.locator("twc-table-cell"); // Update this selector with your cell selector
+    const cellCount = await cells.count();
+    const rowData: string[] = [];
+
+    for (let i = 0; i < cellCount; i++) {
+      const cellText = await cells.nth(i).textContent();
+      rowData.push(cellText?.trim() || "");
+    }
+    return rowData;
+  }
+
+  // Method to validate a single row
+  async validateRow(rowIndex: number, expectedValues: string[]): Promise<void> {
+    const actualValues = await this.getRowData(rowIndex);
+  }
+
+  async caseFilterIcon(): Promise<Locator> {
+    return this.filterIcon;
+  }
+  async getptFilterheading() {
+    return await this.ptFilterHeading.innerText();
+  }
+
+  async getstFilterheading() {
+    return await this.stFilterHeading.innerText();
+  }
+  async clickOnPtFilterIcon() {
+    await this.filterIcon.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickOnSelectState() {
+    await this.stateFilterIcon.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickOnStateDropdown() {
+    await this.stateDdl.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  async selectStateOption() {
+    await this.stateDdlOption.click();
+  }
+
+  async clickOnApplyFilterBtn() {
+    await this.applyFilterBtn.click();
+  }
+
+  async clickOnSaveFilterBtn() {
+    await this.saveFilterBtn.click();
+  }
+
+  async clickOnFilterTxtBox() {
+    await this.filterTxtBox.click();
+    await this.filterTxtBox.fill("Deployed");
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickOnClearTextBoxValue() {
+    await this.filterTxtBox.clear();
+    //await this.filterTxtBox.fill('Deployed1')
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickOnSaveBtn() {
+    await this.saveBtn.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickOnSaveBtnForSate() {
+    await this.saveBtnForSate.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  // async clickOnSavedFilterOptions (){
+  //   await this.savedFilterOption.hover();
+  // }
+
+  async selectSavedFilterRowContent(value: string): Promise<Locator> {
+    return this.page
+      .locator(".filter-container bpme-infinite-scroll")
+      .getByRole("menuitem", { name: value });
+  }
+  async clickOnThreeDotsIconForSavedFIlter(value: string) {
+    (await this.selectSavedFilterRowContent(value)).hover();
+    (await this.selectSavedFilterRowContent(value))
+      .locator("[name='three-dots-vertical']")
+      .click();
+  }
+
+  async clickOnEditFilterBtn() {
+    await this.editFilterBtn.click();
+  }
+  async clickOnDeleteFilterBtn() {
+    await this.deleteFilterBtn.click();
+  }
+
+  async clickOnCancelBtn() {
+    await this.cancelBtn.click();
+  }
+
+  async clickOnDeleteBtn() {
+    await this.deleteFilterBtn.click();
+  }
+
+  async clickOnDismissBtn() {
+    await this.dismissBtn.click();
+  }
+
+  async ClickOnInputBoxName(value: string): Promise<void> {
+    await this.ptInputName.click();
+    await this.ptInputName.fill(value);
+  }
+
+  //  Process Template Tabular Section
+  async caseColoumnIcon(): Promise<Locator> {
+    return this.page
+      .locator("twc-toolbar-item")
+      .filter({ hasText: "Column selector" })
+      .locator("svg");
+  }
+
+  async casesRefreshIcon(): Promise<Locator> {
+    return this.page
+      .locator("twc-toolbar-item")
+      .filter({ hasText: "Refresh" })
+      .locator("svg");
+  }
+
+  // async getPtTableDetails(rowName: string, cellIndex: number) {
+  // const cell = await this.page
+  //   .locator(`twc-table-row[details*='"name":"${rowName}"']`)
+  //   .locator(`twc-table-cell:nth-child(${cellIndex})`);
+  // return cell;
+  // }
+
+  //   async getPtTableDetails(name: string) {
+  //   const details = await this.page
+  //     .locator(`twc-table-row[details*='"name":"${name}"']`)
+  //     .getAttribute("details");
+
+  //   // return details;
+  //   if (details) {
+  //     const data: {
+  //       casedata: {
+  //         ptID: string;
+  //         ptState: string;
+  //         ptName: string;
+  //         ptVersion: string;
+
+  //       };
+  //     } = JSON.parse(details);
+  //     return data;
+  //   }
+  // }
+
+  // const table = await this.page.locator('twc-table');
+  // const tableRows = await table.locator('twc-table-row').elements();
+
+  async getRefreshIcon(): Promise<Locator> {
+    return this.refreshIcon;
+  }
+
+  async getColumnSelectorIcon(): Promise<Locator> {
+    return this.columnSelectorIcon;
+  }
+  async getProcessTemplatesHeader(): Promise<Locator> {
+    return this.processTemplatesHeader;
+  }
+  async getAllProcessTemplatesHeader(): Promise<Locator> {
+    return this.allProcessTemplatesHeader;
+  }
+  async verifyPtDropdown() {
+    await expect(this.page.getByRole("combobox")).toHaveValue(
+      "Process Templates"
+    );
+  }
+
+  async stateCheckBox(): Promise<Locator> {
+    return this.page
+      .getByRole("menuitem", { name: "State", exact: true })
+      .locator("twc-checkbox label input");
+  }
+
+  async selectStateColoumn() {
+    await this.page
+      .locator(".selectedData")
+      .getByText("State", { exact: true })
+      .click();
+  }
+  async nameCheckBox(): Promise<Locator> {
+    return this.page
+      .getByRole("menuitem", { name: "State", exact: true })
+      .locator("twc-checkbox label input");
+  }
+
+  async validateRowContains(
+    rowIndex: number,
+    expectedValues: string[]
+  ): Promise<boolean> {
+    const rowLocator = this.processTempRows
+      .nth(rowIndex)
+      .locator("twc-table-cell");
+    const actualValues = await rowLocator.evaluateAll((cells) =>
+      cells.map((cell) => cell.textContent?.trim() || "")
+    );
+
+    // console.log(`Row ${rowIndex} Validation (Contains Check):`);
+    //console.log('Actual:', actualValues);
+    //console.log('Expected Substrings:', expectedValues);
+
+    // Validate each cell contains the corresponding expected substring
+    const isValid = expectedValues.every((expected, index) =>
+      actualValues[index]?.includes(expected)
+    );
+
+    if (!isValid) {
+      console.error(`Validation failed for row ${rowIndex}`);
+      actualValues.forEach((value, index) => {
+        if (!value.includes(expectedValues[index])) {
+          console.error(
+            `Mismatch at column ${index}: Expected substring "${expectedValues[index]}", Found "${value}"`
+          );
+        }
+      });
+    }
+    return isValid;
+  }
+
+  async clickonWorkItemRecord() {
+    await this.processTempRows.first().click();
+  }
+
+  async clickonAddtionAttributeSection() {
+    await this.additionAttributeSection.click();
+  }
+  async navigatetoProcessInstances() {
+    await this.processInstances.click();
+    await this.page.waitForTimeout(600);
+  }
+  async navigateToProcessTemplate() {
+    await this.page
+      .locator("twc-list-item:nth-child(5) > .menu-item > .menu-item__label")
+      .click();
+    await this.page.waitForSelector("bpme-common-audit-table");
+  }
+
+  // async navigateToProcessTemplate() {
+  //   await this.processTemplates.click();
+  // }
+  async clickonProcessInstancesCases() {
+    await this.processInstancesCases.click();
+  }
+
+  async validateAlertText(expectedText: string) {
+    let alertText = "";
+    this.page.on("dialog", async (dialog) => {
+      alertText = dialog.message();
+    });
+  }
+
+  async clickonColumnSelector() {
+    await this.columnSelector.click();
+  }
+
+  async clickOnCOlumn() {
+    await this.page.locator("[name='view_column']").click();
+    await this.page.waitForTimeout(1000);
+  }
+
+  async verifyDropdown() {
+    await expect(this.page.getByRole("combobox")).toHaveValue(
+      "Process Templates"
+    );
+  }
+
+  async getCellValueText(rascName: string) {
+    await this.page
+      .locator(`twc-table-cell`)
+      .getByText(rascName, { exact: true })
+      .click();
+  }
+
+  async validateptProcInstRowContains(
+    rowIndex: number,
+    expectedValues: string[]
+  ): Promise<boolean> {
+    const rowLocator = this.ptProcInstRows
+      .nth(rowIndex)
+      .locator("twc-table-cell");
+    const actualValues = await rowLocator.evaluateAll((cells) =>
+      cells.map((cell) => cell.textContent?.trim() || "")
+    );
+    const isValid = expectedValues.every((expected, index) =>
+      actualValues[index]?.includes(expected)
+    );
+
+    if (!isValid) {
+      console.error(`Validation failed for row ${rowIndex}`);
+      actualValues.forEach((value, index) => {
+        if (!value.includes(expectedValues[index])) {
+          console.error(
+            `Mismatch at column ${index}: Expected substring "${expectedValues[index]}", Found "${value}"`
+          );
+        }
+      });
+    }
+    return isValid;
+  }
+
+  async backToProcessTemplates() {
+    await this.backoProcessTemplatesBtn.click();
+  }
+}

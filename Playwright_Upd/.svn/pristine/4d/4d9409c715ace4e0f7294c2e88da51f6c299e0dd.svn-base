@@ -1,0 +1,59 @@
+import { type Locator, type Page, expect } from "@playwright/test";
+
+export class AdministratorPage {
+  readonly page: Page;
+  readonly goBtn: Locator;
+  readonly prcoessManager: Locator;
+  readonly haltedProcess: Locator;
+  readonly filter: Locator;
+  readonly packageName: Locator;
+  readonly okButton: Locator;
+  readonly startBtn: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.startBtn = page.getByRole("button", { name: "Start" }).first();
+    this.prcoessManager = page.locator("#mat-tab-link-4");
+    //this.haltedProcess = page.locator("#templates-container").locator('div[ng-reflect-message="Process Name : HaltRetryProjec"]').locator('button:has-text("Start")');
+    this.haltedProcess = page
+      .locator('div[class="process-list-item active ng-star-inserted"]')
+      .getByRole("button", { name: "start" });
+    this.filter = page
+      .locator('div[class="search-icon-container"]')
+      .locator('mat-icon[data-mat-icon-name="funnel"]');
+    this.packageName = page.locator('input[ng-reflect-name="packageName"]');
+    this.okButton = page.locator('button:has-text("OK")');
+  }
+
+  async getAdministratorWelcomeTitle(): Promise<Locator> {
+    return this.page.locator("div.title");
+  }
+
+  async getDeploymentManangerCard(): Promise<Locator> {
+    return this.page.locator("div:nth-child(1) > div.card-title");
+  }
+  async navigateToDeploymentManager() {
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.getByRole("button", { name: "Go" }).first().click();
+    await this.page.waitForLoadState("domcontentloaded");
+  }
+  async navigatetoProcessManager() {
+    await this.prcoessManager.click();
+  }
+  async startHaltedPrcoess() {
+    await this.haltedProcess.click();
+  }
+  async EnterPackageName(value: string): Promise<void> {
+    await this.packageName.click();
+    await this.packageName.fill(value);
+    await this.page.waitForTimeout(2000);
+  }
+
+  async startProcess(processName: string) {
+    await this.filter.click();
+    await this.packageName.fill(processName);
+    await this.okButton.click();
+    await this.startBtn.waitFor();
+    await this.startBtn.click();
+  }
+}

@@ -1,0 +1,221 @@
+import { expect, Locator, Page } from "@playwright/test";
+import { title } from "process";
+const dataset = JSON.parse(
+  JSON.stringify(require("../fixtures/TestData.json"))
+);
+export class UserResourcesPage {
+  readonly page: Page;
+  readonly userResourceHeader: Locator;
+  readonly allUserResourceHeader: Locator;
+  readonly refreshIcon: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.userResourceHeader = page.getByTitle("Users/Resources", {
+      exact: true,
+    });
+    this.allUserResourceHeader = page
+      .locator("twc-content-pane")
+      .getByText("All Users/Resources");
+    this.refreshIcon = page.locator("[tooltipcontent='Refresh']");
+  }
+
+  async getRefreshIcon(): Promise<Locator> {
+    return this.refreshIcon;
+  }
+  async getUserResourceHeader(): Promise<Locator> {
+    return this.userResourceHeader;
+  }
+  async getAllUserResourceHeader(): Promise<Locator> {
+    return this.allUserResourceHeader;
+  }
+  async navigateToUserResources() {
+    await this.page
+      .locator("twc-list-item:nth-child(4) > .menu-item > .menu-item__label")
+      .click();
+    await this.page.waitForTimeout(800);
+  }
+  async verifyDropdown() {
+    await expect(this.page.getByRole("combobox")).toHaveValue(
+      "Users/Resources"
+    );
+  }
+  async clickOnFilter() {
+    await this.page.waitForTimeout(500);
+    await this.page.locator("twc-icon[name='add-new']").click();
+  }
+  async clickOnStateFilter() {
+    await this.page.locator("twc-categoriser[label='State']").waitFor();
+    await this.page.locator("twc-categoriser[label='State']").click();
+  }
+
+  async getFilterTitle() {
+    return await this.page
+      .locator(".filter-container .header__title")
+      .innerText();
+  }
+  async getFilterSubTitle() {
+    return await this.page
+      .locator(".filter-container .header__subtitle")
+      .innerText();
+  }
+  async applyFilterBtn(): Promise<Locator> {
+    return this.page.getByRole("button", { name: "Apply Filters" });
+  }
+  async saveBtn(): Promise<Locator> {
+    return this.page.getByRole("button", { name: "Save" });
+  }
+  async resetAllBtn(): Promise<Locator> {
+    return this.page.getByRole("button", { name: "Reset All" });
+  }
+  async clearFilterBtn(): Promise<Locator> {
+    return this.page.getByRole("button", { name: "Clear filter" });
+  }
+  async createNewFilter(filterType: string) {
+    await this.page.locator("#CURRENT_STATE").getByRole("combobox").click();
+    await this.page
+      .getByRole("option", { name: `${filterType}` })
+      .locator("div")
+      .first()
+      .click();
+    (await this.applyFilterBtn()).click();
+    (await this.saveBtn()).click();
+    await this.page.waitForTimeout(500);
+  }
+
+  async selectSavedFilterRowContent(value: string): Promise<Locator> {
+    return this.page
+      .locator(".filter-container bpme-infinite-scroll")
+      .getByRole("menuitem", { name: value });
+  }
+
+  async clickOnThreeDotsIconForSavedFIlter(value: string) {
+    await (await this.selectSavedFilterRowContent(value)).waitFor();
+    (await this.selectSavedFilterRowContent(value)).hover();
+    (await this.selectSavedFilterRowContent(value))
+      .locator("[name='three-dots-vertical']")
+      .click();
+  }
+  async clickOnCOlumn() {
+    await this.page.locator("[name='view_column']").click();
+    await this.page.waitForTimeout(1000);
+  }
+  async editFilter() {
+    return this.page.getByRole("menuitem", { name: "Edit filter" });
+  }
+  async deleteFilter() {
+    return this.page.getByRole("menuitem", { name: "Delete filter" });
+  }
+
+  async dismissBtn(): Promise<Locator> {
+    return this.page.getByRole("button", { name: "Dismiss" });
+  }
+  async showMoreBtn(): Promise<Locator> {
+    return this.page.getByRole("button", { name: "Show more" });
+  }
+  async clickOnCancel() {
+    await this.page
+      .locator(".filter-save-dialog")
+      .getByRole("button", { name: "Cancel" })
+      .click();
+    await this.page.waitForTimeout(800);
+  }
+
+  async deleteFilterDialogValidation() {
+    (await this.deleteFilter()).click();
+    expect(
+      await this.page
+        .locator(".filter-delete-dialog [slot='labelText']")
+        .innerText()
+    ).toContain("Delete filter");
+    expect(
+      await this.page
+        .locator(".filter-delete-dialog [slot='bodyHeader']")
+        .innerText()
+    ).toContain("Are you sure you want to delete?");
+    await expect(
+      this.page.locator(".filter-delete-dialog [slot='bodyContent']")
+    ).toContainText("This action is permanent and cannot be undone.");
+    //buttons
+    await expect(
+      this.page.locator(".filter-delete-dialog [slot='cancel']")
+    ).toBeVisible();
+    await this.page.locator(".filter-delete-dialog [slot='confirm']").click();
+    await this.page.waitForTimeout(1000);
+  }
+
+  async filterSaveDialog(filterName: string) {
+    expect(
+      await this.page.locator(".filter-save-dialog #title slot").innerText()
+    ).toContain("Save query for selected filters");
+    await this.page
+      .getByRole("textbox")
+      .pressSequentially(filterName, { delay: 10 });
+    (await this.dialogSaveBtn()).click();
+    await this.page.waitForTimeout(1300);
+  }
+
+  async alertDialogValidations() {
+    await expect(this.page.getByText("Duplicate name")).toBeVisible();
+    await expect(this.page.locator(".error-content")).toBeVisible();
+    expect(await this.showMoreBtn()).toBeVisible();
+  }
+
+  async backToFilters(): Promise<Locator> {
+    return this.page.locator(".navigate-wrapper");
+  }
+  async filterLabel() {
+    return await this.page.locator("twc-tag").innerText();
+  }
+  async dialogSaveBtn(): Promise<Locator> {
+    return this.page
+      .locator(".filter-save-dialog")
+      .getByRole("button", { name: "Save" });
+  }
+  //Pranav
+  // Filter use in Audit > User/Resources & Process Templates
+
+  // Filter use in Audit > Application > State
+
+  // Filter use in Audit > Application > Deployment Date
+  async clickOnDeploymentDateFilter() {
+    await this.page.locator("twc-categoriser[label='Deployment Date']").click();
+  }
+
+  // Filter use in Audit > System > Creation Date
+  async clickOnCreationDateFilter() {
+    await this.page.locator("twc-categoriser[label='Creation Date']").click();
+  }
+
+  // Filter use in Audit > System >Severity
+  async clickOnSeverityFilter() {
+    await this.page.locator("twc-categoriser[label='Severity']").click();
+  }
+
+  // Filter use in Audit > System > MessageCategory
+  async clickOnMessageCategoryFilter() {
+    await this.page
+      .locator("twc-categoriser[label='Message Category']")
+      .click();
+  }
+  async createNewSeverityFilter(filterType: string) {
+    await this.page.locator("#SEVERITY").getByRole("combobox").click();
+    await this.page
+      .getByRole("option", { name: `${filterType}` })
+      .locator("div")
+      .first()
+      .click();
+    await this.page.waitForTimeout(1000);
+  }
+  async createMessageCategoryFilter(filterType: string) {
+    await this.page.locator("#MSG_CATEGORY").getByRole("combobox").click();
+    await this.page
+      .getByRole("option", { name: `${filterType}` })
+      .locator("div")
+      .first()
+      .click();
+    (await this.applyFilterBtn()).click();
+    (await this.saveBtn()).click();
+    await this.page.waitForTimeout(1000);
+  }
+}

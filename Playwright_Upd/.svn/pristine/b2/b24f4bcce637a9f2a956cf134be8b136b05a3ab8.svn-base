@@ -1,0 +1,101 @@
+import { LoginPage } from "./LoginPage";
+import { HomePage } from "./HomePage";
+import { BSPage } from "./BSPage";
+import { DetailsPage } from "./DetailsPage";
+import { Page } from "@playwright/test";
+import { AdministratorPage } from "./AdministratorPage";
+import { DeploymentManagerPage } from "./DeploymentManagerPage";
+import { WorkListPage } from "./WorkListPage";
+import { CaseManagerPage } from "./CaseManagerPage";
+import { AuditPage } from "./AuditPage";
+import { AuditWorkItemPage } from "./AuditWorkItemPage";
+import { ProcessInstancesPage } from "./ProcessInstancesPage";
+import { UserResourcesPage } from "./UserResourcesPage";
+import { AuditProcessTemplatesPage } from "./AuditProcessTemplatesPage";
+import { AuditApplicationsPage } from "./AuditApplicationsPage";
+import { AuditSystemPage } from "./AuditSystemPage";
+
+export class POManager {
+  loginPage: LoginPage;
+  homePage: HomePage;
+  bsPage: BSPage;
+  detailsPage: DetailsPage;
+  adminPage: AdministratorPage;
+  dmPage: DeploymentManagerPage;
+  wlPage: WorkListPage;
+  cmPage: CaseManagerPage;
+  adPage: AuditPage;
+  adworkitempage: AuditWorkItemPage;
+  adPrcoessInstacesPage: ProcessInstancesPage;
+  userResourcePage: UserResourcesPage;
+  adprocesstemplatespage: AuditProcessTemplatesPage;
+  adapplicationspage: AuditApplicationsPage;
+  adsystempage: AuditSystemPage;
+  page: Page;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.loginPage = new LoginPage(this.page);
+    this.bsPage = new BSPage(this.page);
+    this.homePage = new HomePage(this.page);
+    this.detailsPage = new DetailsPage(this.page);
+    this.adminPage = new AdministratorPage(this.page);
+    this.dmPage = new DeploymentManagerPage(this.page);
+    this.wlPage = new WorkListPage(this.page);
+    this.cmPage = new CaseManagerPage(this.page);
+    this.adPage = new AuditPage(this.page);
+    this.adworkitempage = new AuditWorkItemPage(this.page);
+    this.adPrcoessInstacesPage = new ProcessInstancesPage(this.page);
+    this.userResourcePage = new UserResourcesPage(this.page);
+    this.adprocesstemplatespage = new AuditProcessTemplatesPage(this.page);
+    this.adapplicationspage = new AuditApplicationsPage(this.page);
+    this.adsystempage = new AuditSystemPage(this.page);
+  }
+  getWorkListPage() {
+    return this.wlPage;
+  }
+  getUserResourcesPage() {
+    return this.userResourcePage;
+  }
+  getCaseManagerPage() {
+    return this.cmPage;
+  }
+  getLoginPage() {
+    return this.loginPage;
+  }
+  getAdminPage() {
+    return this.adminPage;
+  }
+  getDMPage() {
+    return this.dmPage;
+  }
+  getHomePage() {
+    return this.homePage;
+  }
+
+  getBSPage() {
+    return this.bsPage;
+  }
+  getDetailsPage() {
+    return this.detailsPage;
+  }
+  getAuditPage() {
+    return this.adPage;
+  }
+  getAuditWorkItemPage() {
+    return this.adworkitempage;
+  }
+  getAuditPrcoessInstancesPage() {
+    return this.adPrcoessInstacesPage;
+  }
+  getAuditProcessTemplatesPage() {
+    return this.adprocesstemplatespage;
+  }
+  getApplicationsPage() {
+    return this.adapplicationspage;
+  }
+  getSystemPage() {
+    return this.adsystempage;
+  }
+}
+module.exports = { POManager };

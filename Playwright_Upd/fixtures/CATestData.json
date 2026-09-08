@@ -1,0 +1,469 @@
+{
+  "workManagerUrlangular": "http://gasdbpmqas06.dev.tibco.com/apps/work-manager/#/overview",
+  "gasdbWorkManagerUrl": "http://gasdbpmqas06.dev.tibco.com/apps/bpmeapp/#/work-manager/nav-menu/bpmBizServices",
+  "workMangerUrlApp": "http://gasdbpmqas06.dev.tibco.com/apps/bpmeapp/#/work-manager",
+  "webcomponenturl": "http://gasdbpmqas06.dev.tibco.com/apps/bpmeapp/#/login",
+  "webcomponenturlApp": "http://gasdbpmqas06.dev.tibco.com/apps/bpmeapp/#/login",
+  "adminUrl": "http://gasdbpmqas06.dev.tibco.com/apps/admin/#/homepage",
+  "orgbrowserurl": "http://gasdbpmqas06.dev.tibco.com/apps/org-browser/#/orgBrowserHome",
+  "ldapContainersurl": "http://gasdbpmqas06.dev.tibco.com/apps/org-browser/#/orgBrowserHome",
+  "buisnessServiceIP": "as",
+  "adminusername": "tibco-admin",
+  "username1": "Liam Lawrence",
+  "username2": "John Eustace",
+  "username3": "Clint Hill",
+  "adminpassword": "secret",
+  "nonadminpassword": "tibco123",
+  "TestGrpNameQA": "QA",
+  "GrpNameTestMainGrp001": "Test Main Group 001",
+  "CAOrgModelFileName" : "BankSolutionOrgProject", 
+  "CAOrgModelRasc" : "BankSolutionOrgProject-dev-1.1.rasc",
+  "CABDS1FileName" : "BankSolutionBDS",
+  "CABDS1Rasc"  : "BankSolutionBDS-dev-2.1.rasc",
+  "CAProcessProjectFileName" : "BankSolution",
+  "CAProcessProjectRasc" : "BankSolution-dev-1.5.rasc",
+  "CAProcessStartFileName" : "productDQLProcess",
+  "CAProcessStartFileName1" : "Process2",
+  "CAProcessStartRasc" : "productDQLProcess-dev-1.0.rasc",
+  "ServerName": "Local server",
+  
+  "caseDetailWI": {
+    "caseDataDetail_caseState1": "Created",
+    "caseInformation_caseState1": "updated"
+  },
+
+  "buisnessService": {
+    "text": "Text field",
+    "number": "5",
+    "time": "16:00:00",
+    "recievedDate": "Nov 12, 2024",
+    "inputDate": "11/12/2024"
+  },
+  "OrgRasc": "OrgNew-dev-2.0.rasc",
+  "OrgName": "OrgNew",
+  "orderDetails": {
+    "orderID": "1",
+    "orderState": {
+      "picked": "PICKED",
+      "packed": "PACKED",
+      "delivered": "DELIEVRED"
+    },
+    "name": "Auto created order",
+    "quantity": "2",
+    "product": "Apple ear pods",
+    "time": "15:00:00",
+    "date": "08/22/2024",
+    "wlName": "GetOrderDetails"
+  },
+  "case": { "nameHeader": "Name", "filterDate": "22/07/2024" },
+  "newCase": {
+    "name": "new created case",
+    "orderID": "14",
+    "updatedName": "Updated Name",
+    "quantity": "12"
+  },
+  "caseDocument": {
+    "pdf": "SamplePDF.pdf",
+    "doc": "SampleDOC.doc",
+    "gif": "SampleGIF.gif",
+    "html": "SampleHTML.html",
+    "jpg": "SampleJPG.jpg",
+    "txt": "SampleTXT.txt"
+  },
+  "workView": {
+    "name": "Auto created work view",
+    "desc": "desc",
+    "makeViewPublic": "true",
+    "targetUser": "Richard Cresswell",
+    "typeOfWorkItem": "Offered",
+    "filterId": "1",
+    "sort": "appNameasc",
+    "coloumns": [
+      "name,version,description,state,id,priority,startDate,endDate,appName"
+    ],
+    "users": "tibco-admin",
+    "authors": "tibco-admin"
+  },
+  "workViewforConfig": {
+    "name": "Created work view for Config screen test",
+    "desc": "desc"
+  },
+  "WorkItem": {
+    "workItemHeader": [
+      "Work Item ID",
+      "Activity Name",
+      "User",
+      "First Offer Time",
+      "State",
+      "Event Links"
+    ],
+    "WorkItemAuditDetailsHeader": [
+      "Event ID",
+      "Message ID",
+      "Creation Time",
+      "Severity",
+      "Principal ID",
+      "Managed Obj Name",
+      "App Activity Name"
+    ]
+  },
+  "ColumnSelector": {
+    "PID": "Process Instance ID",
+    "ActivityName": "Activity Name",
+    "Type": "Type",
+    "Priority": "Priority"
+  },
+  "workItemRow": {
+    "WorkItemID": "",
+    "ActivityName": "InputNum1andNum2",
+    "User": "",
+    "State": "OFFERED",
+    "EventLinks": {
+      "RelatedWorkItems": "Related work items",
+      "RelatedCases": "Related cases"
+    }
+  },
+  "WorkItemAuditDetails": {
+    "EventID": "",
+    "MessageID": "BRM_WORKITEM_SCHEDULED",
+    "CreationTime": "Creation Time",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": "",
+    "AppActivityName": "InputNum1andNum2"
+  },
+  "relatedWorkItemrow": {
+    "WorkItemID": "",
+    "ActivityName": "InputNum1andNum2",
+    "User": "",
+    "State": "OFFERED",
+    "EventLinks": {
+      "ReferenceddWorkItems": "Referenced work items",
+      "RelatedWorkItems": "Related work items"
+    }
+  },
+  "PrcoessInstance": {
+    "PrcoessInstanceHeader": [
+      "Process Instance ID",
+      "Priority",
+      "User",
+      "State",
+      "Status Changed On",
+      "Start date",
+      "Event Links"
+    ]
+  },
+  "processinstanceRow": {
+    "PID": "",
+    "Priority": "NORMAL",
+    "User": "tibco-admin",
+    "State": "STARTED",
+    "EventLinks": "Referenced work items"
+  },
+  "ptProcessInstanceRowHeader": {
+    "ptProcessInstanceRowHeaderArr": [
+      "Process Instance ID",
+      "Priority",
+      "User",
+      "State",
+      "Status Changed On",
+      "Start date",
+      [
+        "Referenced work items",
+        "Referenced processes",
+        "Referenced cases",
+        "Source process template"
+      ]
+    ]
+  },
+  "ptProcessInstanceRowDetails": {
+    "PID": "",
+    "Priority": "NORMAL",
+    "User": "tibco-admin",
+    "State": "STARTED",
+    "StateChangedOn": "",
+    "StartDate": "",
+    "EventLinks": {
+      "ReferencedWorkItems": "Referenced work items",
+      "ReferencedProcesses": "Referenced processes",
+      "ReferencedCases": "Referenced cases",
+      "SourceProcessTemplate": "Source process template"
+    }
+  },
+  "piAuditDetails": {
+    "EventID": "",
+    "MessageID": "BX_INSTANCE_TASKS_CREATED",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": "HaltRetryProjectProcess",
+    "AppActivityName": "InputNum1andNum2"
+  },
+  "caseAuditDetails": {
+    "EventID": "",
+    "MessageID": "CDM_CASE",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": "com.example.samplebdsproject1.Order-1-0"
+  },
+  "API": {
+    "ldapName": "CaseAccessContainer",
+    "ldapDesc": "LDAP container for case access management",
+    "alias": "easyAs",
+    "resourceName": "Tony Pulis",
+    "labelName": "Tony Pulis",
+    "dn": "ou"
+  },
+  "Audit": {
+    "header": {
+      "tableHeader": [
+        "User Resource Id",
+        "Name",
+        "State",
+        "Creation Time",
+        "LDAP Container ID"
+      ]
+    },
+    "ptHeader": {
+      "ptTableHeader": [
+        "Process Template ID",
+        "State",
+        "Process Template Name",
+        "Version",
+        "Deployed Time",
+        "Event Links"
+      ]
+    },
+    "appHeader": {
+      "appTableHeader": [
+        "Application ID",
+        "Name",
+        "Version",
+        "State",
+        "Deployment Date",
+        "Event Links"
+      ]
+    },
+    "sysHeader": {
+      "sysTableHeader": [
+        "Event ID",
+        "Message Category",
+        "Message ID",
+        "Severity",
+        "Creation Date",
+        "Principal Name",
+        "Managed Obj Name"
+      ]
+    },
+    "filter": {
+      "title": "Filters",
+      "subtitle": "Create new filter",
+      "name": "Test Filter",
+      "deleted": "DELETED",
+      "created": "CREATED",
+      "offered": "OFFERED",
+      "failed": "FAILED",
+      "started": "STARTED",
+      "deployed": "DEPLOYED",
+      "undeployed": "UNDEPLOYED",
+      "undeploying": "UNDEPLOYING"
+    },
+    "sysServerityFilter": {
+      "debug ": "Debug",
+      "service": "Service",
+      "info": "Info",
+      "audit": "Audit",
+      "warn": "Warn",
+      "error": "Error",
+      "trace": "Trace",
+      "fatal": "Fatal"
+    },
+    "sysMsgCategoryFilter": {
+      "processTemplate": "ProcessTemplate",
+      "processInstance": "ProcessInstance",
+      "workGroup": "WorkGroup",
+      "workItem": "WorkItem",
+      "globalData": "GlobalData",
+      "globalDataAdmin": "GlobalDataAdmin",
+      "document": "Document",
+      "globalDataNotification": "GlobalDataNotification",
+      "caseData": "CaseData",
+      "deployment": "Deployment",
+      "user": "User",
+      "unknwown": "Unknown",
+      "organizationalEntity": "OrganizationalEntity",
+      "admin": "Admin",
+      "workModel": "WorkModel",
+      "worktype": "WorkType",
+      "channel": "Channel",
+      "scriptType": "ScriptType",
+      "resource": "Resource",
+      "security": "Security",
+      "ldapContainer": "LdapContainer",
+      "orgModel": "OrgModel",
+      "userSetting": "UserSetting",
+      "ldapRequest": "LdapRequest",
+      "eqlRequest": "RqlRequest",
+      "brmApiSecurity": "BrmApiSecurity",
+      "dynamicRqlRequest": "DynamicRqlRequest",
+      "candidateQuery": "CandidateQuery",
+      "component": "Component",
+      "Event": "Event",
+      "form": "Form",
+      "pageflow": "PageFlow",
+      "calendar": "Calendar",
+      "calendarApiSecurity": "CalendarApiSecurity",
+      "pfeApiSecurity": "PfeApiSecurity",
+      "globalSignal": "GlobalSignal",
+      "cloudEngine": "CloudEngine"
+    },
+    "coloumn": {
+      "header": "Column Selector",
+      "displayName": "Display Name",
+      "nameColoumn": "Name",
+      "moduleName": "Module Name",
+      "stateColumn": "State",
+      "type": "type",
+      "severityColumn": "Severity",
+      "messageColumn": "Message Category",
+      "messageCategory": "Message Category",
+      "managedObjVersion": "Managed Obj Version",
+      "messageIdColumn": "Message ID"
+    }
+  },
+  "processTemplateRow": {
+    "ptID": "",
+    "ptState": "DEPLOYED",
+    "ptName": "HaltRetryProjectProcess",
+    "ptVersion": "4.0.0.20241023062633670",
+    "ptDeployedTime": "",
+    "EventLinks": {
+      "ProcessInstances": "Process instances",
+      "Applications": "Applications"
+    }
+  },
+  "processTemplateRowDetails": {
+    "processTemplateRowDetailsArr": [
+      "",
+      "DEPLOYED",
+      "HaltRetryProjectProcess",
+      "4.0.0.20241023062633670",
+      "",
+      "Process instances",
+      "Applications"
+    ]
+  },
+  "ptHeader": {
+    "ptID": "Process Template ID",
+    "ptState": "State",
+    "ptName": "Process Template Name",
+    "ptVersion": "Version",
+    "ptDeployedTime": "Deployed Time",
+    "ptEventLinks": "Event Links"
+  },
+  "applicationeRow": {
+    "applicationeRowArr": [
+      "",
+      "HaltRetryProject",
+      "4.0.0.20241023062633670",
+      "DEPLOYED",
+      "",
+      "Process templates"
+    ]
+  },
+  "appHeader": {
+    "appID": "Application ID",
+    "appName": "Name",
+    "appVersion": "Version",
+    "appState": "State",
+    "appDeployedDate": "Deployment Date",
+    "appEventLinks": "Event Links"
+  },
+  "ptAuditDetailsHeader": {
+    "ptAuditDetailsHeaderArr": [
+      "Event ID",
+      "Message ID",
+      "Creation Time",
+      "Severity",
+      "Principal ID",
+      "Managed Obj Name"
+    ]
+  },
+  "ptAuditDetails": {
+    "ptAuditDetailsArr": [
+      "",
+      "WP_APPLICATION_DEPLOYED",
+      "Creation Time",
+      "Audit",
+      "tibco-admin",
+      "HaltRetryProject"
+    ]
+  },
+  "appAuditDetails": {
+    "EventID": "",
+    "MessageID": "WP_APPLICATION_DEPLOYED",
+    "CreationTime": "Creation Time",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": ""
+  },
+  "AuditCases": {
+    "AuditCaseHeader": [
+      "OrderID",
+      "OrderState",
+      "Name",
+      "Quantity",
+      "Product",
+      "Text",
+      "Date",
+      "Event Links"
+    ],
+    "caseAuditDetailsHeader": [
+      "Event ID",
+      "Message ID",
+      "Creation Time",
+      "Severity",
+      "Principal ID",
+      "Managed Object ID"
+    ],
+    "caseAuditDetailsrow": {
+      "Severity": "Audit",
+      "PrincipalID": "tibco-admin"
+    }
+  },
+  "process": {
+    "processHeader": [
+      "Process Instance ID",
+      "Process Name",
+      "Process ID",
+      "State",
+      "Start Date",
+      "Created Date",
+      "Actions"
+    ]
+  },
+
+  "signOutUrl": "https://www.google.com/",
+
+  "fillCustomerData": {
+    "customerName": "John Eustace",
+    "accountNumber": "ACC001",
+    "accountType": "Savings",
+    "accountState": "ACTIVE",
+    "accountStates": ["ACTIVE", "INACTIVE", "ACTIVE", "INACTIVE", "ACTIVE", "INACTIVE"]
+  },
+
+  "caseManager": {
+    "url": "http://gasdbpmqas06.dev.tibco.com/apps/bpmeapp/#/work-manager/nav-menu/bpmCaseManager",
+    "savingAccountCaseType": "Saving Account",
+    "loanAccountCaseType": "Loan Account",
+    "debitCardCaseType": "Debit Card",
+    "expectedSavingStates": ["ACTIVE", "INACTIVE", "KYC PENDING", "CLOSED"],
+    "expectedLoanStates": ["ACTIVE", "INACTIVE", "APPROVED", "CLOSED"],
+    "expectedDebitCardStates": ["ACTIVE", "INACTIVE", "BLOCKED", "CLOSED"],
+    "expectedBranchAddress": "London Main Branch",
+    "expectedLoanBranch": "London Main Branch",
+    "expectedMobile": "07700900000",
+    "expectedLoanContact": "07700900001"
+  }
+}
+

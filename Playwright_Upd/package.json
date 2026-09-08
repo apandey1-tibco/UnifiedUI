@@ -1,0 +1,35 @@
+{
+  "name": "downloads",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pre:req": "npm install",
+    "pretest": "npm run allure:clear",
+    "test": "npx playwright test tests/Parallel --workers=4 && npx playwright test tests/Serial --workers=1",
+    "allure:report": "allure generate allure-results -o allure-report --clean",
+    "report": "allure open ./allure-report",
+    "allure:clear": "rd /s /q allure-results && rd /s /q allure-report",
+    "post:test": "npm run allure:report",
+    "serial": "npx playwright test tests/Serial --workers=1",
+    "parallel": "npx playwright test tests/Parallel --workers=4"
+  },
+  "keywords": [],
+  "author": "Arshad Chilakwad",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^20.14.2",
+    "allure-commandline": "^2.32.0",
+    "allure-playwright": "^3.0.9",
+    "dotenv": "^17.4.2",
+    "mkdirp": "^3.0.1",
+    "playwright": "^1.51.1",
+    "playwright-xray": "^0.6.25",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "allure": "^0.0.0"
+  }
+}

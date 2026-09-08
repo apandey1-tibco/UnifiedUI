@@ -1,0 +1,204 @@
+# Test info
+
+- Name: Process Manager Test
+- Location: C:\Old_VDI_Backup\Old_VDI_Downloads_Backup\Playwright_Upd\Playwright_Upd\tests\Parallel\01_ProcessManager.spec.ts:43:5
+
+# Error details
+
+```
+Error: expect(received).not.toContain(expected) // indexOf
+
+Expected value: not "Process Instance ID"
+Received array:     ["", "Process Instance ID", "Process Name", "State", "Start Date", "Created Date", "Actions"]
+    at C:\Old_VDI_Backup\Old_VDI_Downloads_Backup\Playwright_Upd\Playwright_Upd\tests\Parallel\01_ProcessManager.spec.ts:82:27
+```
+
+# Page snapshot
+
+```yaml
+- main:
+  - img
+  - separator
+  - text: BPME application
+  - complementary
+  - button "Local server":
+    - text: Local server
+    - img
+  - dialog:
+    - text: Process Templates
+    - button "Start"
+    - text: Clear filters Process Name = Array002 ProcessPackage
+  - separator "Resize"
+  - text: Array002
+  - button "Find Instances"
+  - img "Columns":
+    - img
+  - combobox: numOptionsSelected
+  - text: ACTIVE
+  - img "Remove":
+    - img
+  - button "Clear entry"
+  - table:
+    - row "Process Instance ID Process Name State Start Date Created Date Actions":
+      - columnheader:
+        - checkbox
+      - columnheader "Process Instance ID"
+      - columnheader "Process Name"
+      - columnheader "State"
+      - columnheader "Start Date"
+      - columnheader "Created Date"
+      - columnheader "Actions"
+    - row "p:0a201 Array002 ACTIVE 31 Aug 2026 12:06 PM 31 Aug 2026 12:06 PM":
+      - cell:
+        - checkbox
+      - cell "p:0a201"
+      - cell "Array002"
+      - cell "ACTIVE"
+      - cell "31 Aug 2026 12:06 PM"
+      - cell "31 Aug 2026 12:06 PM"
+      - cell:
+        - button
+    - row "p:0a20f Array002 ACTIVE 31 Aug 2026 12:36 PM 31 Aug 2026 12:36 PM":
+      - cell:
+        - checkbox
+      - cell "p:0a20f"
+      - cell "Array002"
+      - cell "ACTIVE"
+      - cell "31 Aug 2026 12:36 PM"
+      - cell "31 Aug 2026 12:36 PM"
+      - cell:
+        - button
+    - row "p:0a20g Array002 ACTIVE 31 Aug 2026 12:41 PM 31 Aug 2026 12:41 PM":
+      - cell:
+        - checkbox
+      - cell "p:0a20g"
+      - cell "Array002"
+      - cell "ACTIVE"
+      - cell "31 Aug 2026 12:41 PM"
+      - cell "31 Aug 2026 12:41 PM"
+      - cell:
+        - button
+    - row "p:0a20h Array002 ACTIVE 31 Aug 2026 12:45 PM 31 Aug 2026 12:45 PM":
+      - cell:
+        - checkbox
+      - cell "p:0a20h"
+      - cell "Array002"
+      - cell "ACTIVE"
+      - cell "31 Aug 2026 12:45 PM"
+      - cell "31 Aug 2026 12:45 PM"
+      - cell:
+        - button
+- iframe
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect, request, Page, chromium } from "@playwright/test";
+   2 | import { POManager } from "../../PageObjects/POManager";
+   3 | import * as utility from "../../fixtures/utility";
+   4 | import { DeploymentManagerPage } from "../../PageObjects/DeploymentManagerPage";
+   5 | import { AdministratorPage } from "../../PageObjects/AdministratorPage";
+   6 | import { ProcessPage } from "../../PageObjects/ProcessPage";
+   7 | import { CaseManagerPage } from "../../PageObjects/CaseManagerPage";
+   8 | import { HomePage } from "../../PageObjects/HomePage";
+   9 |
+   10 | //Json->string->js object
+   11 | const dataset = JSON.parse(
+   12 |   JSON.stringify(require("../../fixtures/TestData.json"))
+   13 | );
+   14 |
+   15 | let page: Page;
+   16 | let poManager: POManager;
+   17 | let adminPage: AdministratorPage;
+   18 | let dmPage: DeploymentManagerPage;
+   19 | let processPage: ProcessPage;
+   20 | let homePage: HomePage;
+   21 | let cmPage: CaseManagerPage;
+   22 |
+   23 | test.beforeAll(async ({ browser }) => {
+   24 |   page = await browser.newPage();
+   25 |   poManager = new POManager(page);
+   26 |   dmPage = poManager.getDMPage();
+   27 |   adminPage = poManager.getAdminPage();
+   28 |   processPage = poManager.getProcessPage();
+   29 |   homePage = poManager.getHomePage();
+   30 |   cmPage = poManager.getCaseManagerPage();
+   31 | });
+   32 |
+   33 | // test("Deploy rasc", async () => {
+   34 | //   await page.goto(dataset.adminUrl);
+   35 | //   await adminPage.navigateToDeploymentManager();
+   36 | //   await dmPage.deployRascFiles(dataset.array002fileName, dataset.array002Rasc);
+   37 | //   const status = await dmPage.getAppStatus(dataset.array002fileName);
+   38 | //   const type = await dmPage.getAppType(dataset.array002fileName);
+   39 | //   expect(status).toHaveText(/Deployed/);
+   40 | //   expect(await type.innerText()).toBe("Process");
+   41 | // });
+   42 |
+   43 | test("Process Manager Test", async () => {
+   44 |   await page.goto(dataset.workMangerUrlApp);
+   45 |   await page.waitForLoadState("domcontentloaded");
+   46 |   await homePage.clickOnBuisnessService();
+   47 |   await cmPage.selectServerFromGlobalSwitcher(dataset.ServerName);
+   48 |   await cmPage.clickOnConfirmServerSelectionBtn();
+   49 |   await processPage.naviagteToProcessTab();
+   50 |
+   51 |   await expect(processPage.header).toBeVisible();
+   52 |   await expect(processPage.findInstancesButton).toBeVisible();
+   53 |   await expect(processPage.startButton).toBeDisabled();
+   54 |
+   55 |   //start the process
+   56 |   await processPage.startProcess("ProcessPackage", "Array002");
+   57 |
+   58 |   //State filter validations
+   59 |   await processPage.filterByState("Active");
+   60 |   expect(await processPage.filterTag.innerText()).toBe("ACTIVE");
+   61 |
+   62 |   //other filter --suspended -->
+   63 |
+   64 |   //Coloumn validations
+   65 |   await processPage.coloumnSelector.click();
+   66 |
+   67 |   const columnValues = await processPage.getColoumnValues();
+   68 |   expect(columnValues).toStrictEqual(dataset.process.processHeader);
+   69 |   await page.waitForTimeout(1000);
+   70 |
+   71 |   // Click on Process Instance ID
+   72 |   await processPage.procesInstanceId().click();
+   73 |   await page.waitForTimeout(1000);
+   74 |
+   75 |   // To verify Process Instance ID is Unchecked
+   76 |   await expect(processPage.procesInstanceId()).toHaveAttribute(
+   77 |     "aria-checked",
+   78 |     "false"
+   79 |   );
+   80 |
+   81 |   const tableHeader = await processPage.getTableHeader();
+>  82 |   expect(tableHeader).not.toContain("Process Instance ID");
+      |                           ^ Error: expect(received).not.toContain(expected) // indexOf
+   83 | });
+   84 |
+   85 | // test("Verify no Process Instance is available in the process view", async () => {
+   86 | //   await page.goto(dataset.workMangerUrl);
+   87 | //   await processPage.naviagteToProcessTab();
+   88 | //   await processPage.clickOnProcess("Array002");
+   89 | //   //Array001
+   90 | //   expect(await processPage.getEmptyMsg()).toBe("No instances to display");
+   91 |
+   92 | //   // expect(await processPage.noProcessInstanceText.innerText()).toBe(
+   93 | //   //   "No Process Instances available"
+   94 | //   // );
+   95 | // });
+   96 |
+   97 | test("Purge process and undeploy", async () => {
+   98 |   await page.goto(dataset.adminUrl);
+   99 |   await adminPage.navigateToDeploymentManager();
+  100 |   //Purge oder sample order process
+  101 |   await dmPage.purgeProcess(dataset.array002fileName);
+  102 |   //Undeploying proj
+  103 |   await dmPage.undeployFiles(dataset.array002fileName);
+  104 | });
+  105 | //await page.getByRole("button", { name: "Clear all filters" }).click();
+  106 |
+```

@@ -1,0 +1,129 @@
+import { Locator, Page } from "@playwright/test";
+import * as utility from "./AuditWorkItemPage";
+
+export class ProcessInstancesPage {
+  readonly page: Page;
+  readonly processInstaceHeader: Locator;
+  readonly processIntacesRow: Locator;
+  readonly statusChangedColumnCells: Locator;
+  readonly refrenceWorkItems: Locator;
+  readonly relatedWorkItems: Locator;
+  readonly relatedCases: Locator;
+  readonly relatedCasesAlert: Locator;
+  readonly parentProcessID: Locator;
+  readonly rootProcessID: Locator;
+  readonly findInstancebutton: Locator;
+  readonly processInstanceInput: Locator;
+  readonly searchButton: Locator;
+  readonly resetButton: Locator;
+  readonly shadowHost: Locator;
+  readonly emptyMessage: Locator;
+  readonly verticalthreeDots: Locator;
+  readonly referencedprocesses: Locator;
+  readonly refrencedCases: Locator;
+  readonly sourceProcessTemplate: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.processInstaceHeader = page.locator(
+      'twc-table-head-cell[role="columnheader"]'
+    );
+    this.processIntacesRow = page.locator("twc-table-row");
+    this.statusChangedColumnCells = page.locator(
+      "twc-table-row >> nth=0 >> twc-table-cell:nth-child(5)"
+    );
+    this.refrenceWorkItems = page.locator("text=Referenced work items").first();
+    this.relatedWorkItems = page.locator("text=Related work items").first();
+    this.relatedCases = page
+      .locator("twc-button")
+      .locator("text=Related cases")
+      .first();
+    this.relatedCasesAlert = page.locator("twc-alert");
+    this.parentProcessID = page
+      .locator("twc-list-item")
+      .getByText("Parent Process ID");
+    this.rootProcessID = page
+      .locator("twc-list-item")
+      .getByText("Root Process ID");
+    this.findInstancebutton = page.locator(
+      "twc-button[class='save-filter-btn']"
+    );
+    this.processInstanceInput = page.locator("twc-dialog").getByRole("textbox");
+    this.searchButton = page.locator("twc-button").getByText("Search");
+    this.resetButton = page.locator("twc-button").getByText("Reset");
+    this.emptyMessage = page.locator('div[class="empty-message"]');
+    this.verticalthreeDots = page
+      .locator('twc-icon-button[name="three-dots-vertical"]')
+      .first();
+    this.referencedprocesses = page
+      .locator("twc-menu-item")
+      .getByText("Referenced processes")
+      .first();
+    this.refrencedCases = page
+      .locator("twc-menu-item")
+      .getByText("Referenced cases")
+      .first();
+    this.sourceProcessTemplate = page
+      .locator("twc-menu-item")
+      .getByText("Source process template", { exact: true })
+      .first();
+  }
+
+  async getFirstStatusChangedDate() {
+    return await this.statusChangedColumnCells.textContent();
+  }
+
+  async clickonPrcoessInstancesRecord() {
+    await this.processIntacesRow.first().click();
+  }
+  async clickonStartedPrcoess() {
+    await this.page
+      .locator(`twc-table-cell`)
+      .getByText("STARTED")
+      .first()
+      .click();
+  }
+  async clickOnRefrenceWorkItems() {
+    await this.refrenceWorkItems.click();
+    await this.page.waitForTimeout(700);
+  }
+
+  async clickOnRelatedWorkItems() {
+    await this.relatedWorkItems.click();
+  }
+
+  async clickonRelatedCases() {
+    await this.relatedCases.click();
+  }
+
+  async fillProcessInstanceID(value: string): Promise<void> {
+    await this.processInstanceInput.click();
+    await this.processInstanceInput.fill(value);
+  }
+
+  async clickSearch(): Promise<void> {
+    await this.searchButton.click();
+  }
+
+  async clickReset(): Promise<void> {
+    await this.resetButton.click();
+  }
+
+  process_Instance_ID(): Locator {
+    return this.page
+      .locator("tr.mat-row.cdk-row")
+      .locator(
+        "td.mat-cell.cdk-cell.def-column.cdk-column-instanceId.mat-column-instanceId"
+      )
+      .first();
+  }
+
+  processInstanceState(InstanceID: string) {
+    const row = this.page
+      .locator("twc-table")
+      .locator("twc-table-cell")
+      .getByText(InstanceID)
+      .locator("xpath=ancestor::twc-table-row");
+    return row.locator("twc-table-cell").nth(3);
+  }
+}

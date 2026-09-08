@@ -1,0 +1,73 @@
+import { type Locator, type Page } from "@playwright/test";
+
+export class AuditPage {
+  readonly page: Page;
+  readonly mainAuditPage: Locator;
+  readonly workItem: Locator;
+  readonly processInstance: Locator;
+  readonly cases: Locator;
+  readonly userResources: Locator;
+  readonly processTemplates: Locator;
+  readonly applications: Locator;
+  readonly system: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    // Audit section
+    this.mainAuditPage = page.locator("twc-navmenu-item#bpmAudit");
+    // Using a helper method to avoid repeating locator logic
+    this.workItem = this.createListViewLocator("Work Items");
+    this.processInstance = this.createListViewLocator("Process Instances");
+    this.cases = this.createListViewLocator("Cases");
+    this.userResources = this.createListViewLocator("Users/Resources");
+    this.processTemplates = this.createListViewLocator("Process Templates");
+    this.applications = this.createListViewLocator("Applications");
+    this.system = this.createListViewLocator("System");
+  }
+  // Helper function to create locators for list views by title
+  private createListViewLocator(title: string): Locator {
+    return this.page
+      .locator("twc-list-view")
+      .getByTitle(title, { exact: true });
+  }
+
+  async navigateToAudit() {
+    await this.mainAuditPage.click();
+    await this.page.waitForLoadState("domcontentloaded"); // Wait for the page to load completely
+  }
+  async clickOnWorkItem() {
+    await this.workItem.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnProcessInstance() {
+    await this.processInstance.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnCases() {
+    await this.cases.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnUserResources() {
+    await this.userResources.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnProcessTemplates() {
+    await this.processTemplates.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnApplications() {
+    await this.applications.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnSystem() {
+    await this.system.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+}

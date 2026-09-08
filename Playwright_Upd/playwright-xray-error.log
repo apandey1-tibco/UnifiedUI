@@ -1,0 +1,77 @@
+Config: [Object: null prototype] {
+  transitional: {
+    silentJSONParsing: true,
+    forcedJSONParsing: true,
+    clarifyTimeoutError: false,
+    legacyInterceptorReqResOrdering: true
+  },
+  adapter: [ 'xhr', 'http', 'fetch' ],
+  transformRequest: [ [Function: transformRequest] ],
+  transformResponse: [ [Function: transformResponse] ],
+  timeout: 600000,
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+  maxContentLength: 107374182400,
+  maxBodyLength: 107374182400,
+  env: {
+    FormData: [Function: FormData] {
+      LINE_BREAK: '\r\n',
+      DEFAULT_CONTENT_TYPE: 'application/octet-stream'
+    },
+    Blob: [class Blob]
+  },
+  validateStatus: [Function: validateStatus],
+  headers: Object [AxiosHeaders] {
+    Accept: 'application/json, text/plain, */*',
+    'Content-Type': 'application/json',
+    options: '[object Object]',
+    'User-Agent': 'axios/1.16.0',
+    'Content-Length': '8256',
+    'Accept-Encoding': 'gzip, compress, deflate, br'
+  },
+  baseURL: 'https://tibco.atlassian.net/',
+  auth: {
+    username: 'avinashkumar.pandey1@tibco.com',
+    password: 'ATATT3xFfGF0ArRCmdsWIOiaiMw2CMpaO5B47fjlmZ_5U0SjmH6eAmTi3R-vOu_uF5LKGiaOZ4eJOIdnVkMJ3wU97BX_4wyFfzSgyrK1TIxADRIoZc6cWZvdJifEcSLApa5rB_Yj6Y1ScoPubAbMmiRWqX5h4nhHr0ubaYmGpWXdctKVzPlNC9A=D8FC50EB'
+  },
+  proxy: false,
+  method: 'post',
+  url: 'https://tibco.atlassian.net/rest/raven/2/api/import/execution',
+  data: '{"testExecutionKey":"","info":{"summary":"[Fri, 15 May 2026 07:32:53 GMT] - Automated run","project":"BPMX","startDate":"2026-05-15T13:02:53+05:30","finishDate":"2026-05-15T13:04:01+05:30","testPlanKey":"BPMX-18845"},"tests":[{"status":"PASS","testKey":"BPMX-18839","evidences":[],"start":"2026-05-15T13:03:01+05:30","finish":"2026-05-15T13:03:09+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]},{"status":"PASS","testKey":"BPMX-18843","evidences":[],"start":"2026-05-15T13:03:10+05:30","finish":"2026-05-15T13:03:15+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]},{"status":"PASS","testKey":"BPMX-18840","evidences":[],"start":"2026-05-15T13:03:15+05:30","finish":"2026-05-15T13:03:16+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]},{"status":"PASS","testKey":"BPMX-18841","evidences":[],"start":"2026-05-15T13:03:16+05:30","finish":"2026-05-15T13:03:26+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]},{"status":"PASS","testKey":"BPMX-18844","evidences":[],"start":"2026-05-15T13:03:33+05:30","finish":"2026-05-15T13:03:35+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]},{"status":"PASS","testKey":"BPMX-18842","evidences":[],"start":"2026-05-15T13:03:35+05:30","finish":"2026-05-15T13:03:42+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]},{"status":"PASS","testKey":"BPMX-18838","evidences":[],"start":"2026-05-15T13:03:52+05:30","finish":"2026-05-15T13:04:01+05:30","steps":[{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""},{"status":"PASS","comment":"","actualResult":""}]}]}',
+  allowAbsoluteUrls: true
+}
+
+Status: 404
+Headers: Object [AxiosHeaders] {
+  'content-type': 'application/problem+json;charset=UTF-8',
+  'transfer-encoding': 'chunked',
+  connection: 'keep-alive',
+  date: 'Fri, 15 May 2026 07:34:03 GMT',
+  server: 'AtlassianEdge',
+  'timing-allow-origin': '*',
+  'x-arequestid': '0b0660409f6ca56f040c3a06a5eaa2bf',
+  'set-cookie': [
+    'atlassian.xsrf.token=2c36428c3ee5988693a0d26941cb3fde58322bf4_lin; Path=/; SameSite=None; Secure'
+  ],
+  'x-aaccountid': '712020%3A730bc81f-d684-4d9c-ac1b-d8b65aaf541f',
+  'cache-control': 'no-cache, no-store, no-transform',
+  'x-content-type-options': 'nosniff',
+  'x-xss-protection': '1; mode=block',
+  'atl-traceid': '7c5a4daa6da0452595b15a032540e609',
+  'atl-request-id': '7c5a4daa-6da0-4525-95b1-5a032540e609',
+  'strict-transport-security': 'max-age=63072000; includeSubDomains; preload',
+  'report-to': '{"endpoints": [{"url": "https://dz8aopenkvv6s.cloudfront.net"}], "group": "endpoint-1", "include_subdomains": true, "max_age": 600}',
+  nel: '{"failure_fraction": 0.01, "include_subdomains": true, "max_age": 600, "report_to": "endpoint-1"}',
+  'server-timing': 'atl-edge;dur=121,atl-edge-internal;dur=26,atl-edge-upstream;dur=96,atl-edge-pop;desc="aws-us-east-1"',
+  'x-cache': 'Error from cloudfront',
+  via: '1.1 5da8836d63b5e625d1d5e30ae7d4e644.cloudfront.net (CloudFront)',
+  'x-amz-cf-pop': 'BOM78-P11',
+  'x-amz-cf-id': 'GyD8oIRpgxqi6-QC_MsQ-huZd3m_qY5LRmU3uAlvyYlfCSnzoQENyQ=='
+}
+Data: {
+  type: 'about:blank',
+  title: 'Not Found',
+  status: 404,
+  detail: 'No endpoint POST /rest/raven/2/api/import/execution.',
+  instance: '/rest/raven/2/api/import/execution'
+}

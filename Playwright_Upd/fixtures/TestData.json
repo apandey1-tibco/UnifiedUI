@@ -1,0 +1,865 @@
+{
+  "workMangerUrl": "http://gasdbpmrhel8x01.dev.tibco.com/apps/bpmeapp/#/work-manager",
+  "gasdbWorkManagerUrl": "http://gasdbpmqas02.dev.tibco.com/apps/bpmeapp/#/work-manager/nav-menu/bpmBizServices",
+  "workMangerUrlApp": "http://gasdbpmrhel8x01.dev.tibco.com/apps/bpmeapp/#/work-manager",
+  "webcomponenturl": "http://gasdbpmrhel8x01.dev.tibco.com/apps/bpmeapp/#/login",
+  "webcomponenturlApp": "http://gasdbpmrhel8x01.dev.tibco.com/apps/bpmeapp/#/login",
+  "adminUrl": "http://gasdbpmrhel8x01.dev.tibco.com/apps/admin/#/homepage",
+  "orgbrowserurl": "http://gasdbpmrhel8x01.dev.tibco.com/apps/org-browser/#/orgBrowserHome",
+  "ldapContainersurl": "http://gasdbpmrhel8x01.dev.tibco.com/apps/org-browser/#/orgBrowser",
+  "DE_BASE_PATH": "http://gasdbpmrhel8x01.dev.tibco.com/bpm/organization/v1/ops/resetDynamic",
+  "buisnessServiceIP": "as",
+  "username1": "tibco-admin",
+  "username2": "Tony Pulis",
+  "username3": "Clint Hill",
+  "username4": "Richard Cresswell",
+  "username5": "Jon Parkin",
+  "password1": "secret",
+  "password2": "tibco123",
+  "orderFileName": "SampleBPMOrderProject",
+  "array001fileName": "Array001",
+  "array001Rasc": "Array001-dev-1.4.rasc",
+  "array002fileName": "Array002",
+  "array002Rasc": "Array002-prod-1.3.rasc",
+  "arrayPackageName": "ProcessPackage",
+  "TestGrpNameQA": "QA",
+  "GrpNameTestMainGrp001": "Test Main Group 001",
+  "BDSfileName": "SampleBDSProject1",
+  "BDSRasc": "SampleBDSProject1-dev-1.3.rasc",
+  "orderRasc": "SampleBPMOrderProject-dev-1.6.rasc",
+  "orderProcess": "SampleBPMOrderProjectProcess",
+  "orgNewfileName": "OrgNew",
+  "orgNewRasc": "OrgNew-dev-2.0.rasc",
+  "FacadeFileName": "ACE_TestFacadeAttributes",
+  "facadeRasc": "ACE_TestFacadeAttributes-dev-1.0.rasc",
+  "facadeProcess": "FacadeProject-dev-1.1.rasc",
+  "offerSetfileName": "OfferSet",
+  "offerSetRasc": "OfferSet-dev-1.0.rasc",
+  "orgModelPart1ACEfileName": "OrgModelPart1ACE",
+  "orgModelPart1ACERasc": "OrgModelPart1ACE-dev-1.2.rasc",
+  "pushDestination": "PUSHOrganizationModel",
+  "simpleOrg": "SimpleOrgModel",
+  "manualAdhocfileName": "ManualAdhoc",
+  "manualAdhocProcessName": "ManualAdhocProcess",
+  "manualAdhocRasc": "ManualAdhoc-prod-1.0.rasc",
+  "simpleBDSfileName": "SimpleBDS",
+  "simpleBDSRasc": "SimpleBDS-prod-1.0.rasc",
+  "simpleOrgModelfileName": "SimpleOrgModel",
+  "simpleOrgModelRasc": "SimpleOrgModel-prod-1.0.rasc",
+  "HatltedFileName": "HaltRetryProject",
+  "HatltedRasc": "HaltRetryProject-dev-4.0.rasc",
+  "rascName": "HaltRetryProjectProcess",
+  "rascNameorg": "HaltRetryProjectProcess",
+  "bsRasc": "BS_AllTypes-prod-1.0.rasc",
+  "bsFileName": "BS_AllTypes",
+  "configProcessRasc": "ConfigTestProject-dev-1.0.rasc",
+  "ConfigTestProject": "ConfigTestProject",
+  "BDSConfigRasc": "TestBDSProject-dev-1.0.rasc",
+  "TestBDSProject": "TestBDSProject",
+  "BDSLangProject": "BDSLanguage",
+  "BDSLangProjectRasc": "BDSLanguage-dev-1.0.rasc",
+  "LangProject": "LanguageTest",
+  "LangProjectRasc": "LanguageTest-dev-1.0.rasc",
+  "LangProjProcess": "ConfigTestProcessProject",
+  "ServerName": "Local server",
+  "ServerName1": "19l02",
+  "ServerName19l02": "win19l02",
+  "DataAdminURL": "http://gasdbpmrhel8x01.dev.tibco.com/apps/data-admin/#/liveView?bpmeapp=true",
+  "caseDetailWI": {
+    "caseDataDetail_caseState1": "Created",
+    "caseInformation_caseState1": "updated"
+  },
+  "abc": "productDQL",
+  "xyzRasc": "productDQL-dev-1.4.rasc",
+  "linkedWorkItem": "ChainedCaseWorkListTask1",
+  "buisnessService": {
+    "text": "Text field",
+    "number": "5",
+    "time": "16:00:00",
+    "recievedDate": "Nov 12, 2024",
+    "inputDate": "11/12/2024",
+    "expectedText": "UT Text",
+    "expectedInt": "13",
+    "expectedDecimal": "4.50",
+    "updatedText": "UT Text updated"
+  },
+  "bspf2": {
+    "groupValue": "/BSPF2/Process Packages/BSPF2.xpdl",
+    "processItemValue": "BSPF2Process",
+    "textAtt": "Text Field 2",
+    "integerAtt": "12,342",
+    "decimalAtt": "1,234.562",
+    "dateAtt": "Oct 22, 2011",
+    "timeAtt": "05:30:02 PM",
+    "booleanAtt": true,
+    "durationDays": "12",
+    "durationHours": "0",
+    "idAtt": "b7-224.92",
+    "uriAtt": "http://www.w3.org/TR/xmlschema2"
+  },
+  "bspf1": {
+    "textAtt": "Text Field",
+    "integerAtt": "1,234",
+    "decimalAtt": "1,234.56",
+    "dateAtt": "Oct 28, 2011",
+    "timeAtt": "05:30:00 PM",
+    "booleanAtt": true,
+    "durationDays": "10",
+    "durationHours": "0",
+    "idAtt": "b7-224.9",
+    "uriAtt": "http://www.w3.org/TR/xmlschema"
+  },
+  "dbInsert": {
+    "custId": "123",
+    "custName": "Avinash"
+  },
+  "OrgRasc": "OrgNew-dev-2.0.rasc",
+  "OrgName": "OrgNew",
+  "orderDetails": {
+    "orderID": "1",
+    "orderState": {
+      "picked": "PICKED",
+      "packed": "PACKED",
+      "delivered": "DELIEVRED"
+    },
+    "name": "Auto created order",
+    "quantity": "2",
+    "product": "Apple ear pods",
+    "time": "15:00:00",
+    "date": "08/22/2024",
+    "wlName": "GetOrderDetails"
+  },
+  "case": {
+    "nameHeader": "Name",
+    "filterDate": "22/07/2024"
+  },
+  "newCase": {
+    "name": "new created case",
+    "orderID": "14",
+    "updatedName": "Updated Name",
+    "quantity": "12"
+  },
+  "caseDocument": {
+    "pdf": "SamplePDF.pdf",
+    "doc": "SampleDOC.doc",
+    "gif": "SampleGIF.gif",
+    "html": "SampleHTML.html",
+    "jpg": "SampleJPG.jpg",
+    "txt": "SampleTXT.txt"
+  },
+  "workView": {
+    "name": "Auto created work view",
+    "desc": "desc",
+    "makeViewPublic": "true",
+    "targetUser": "Richard Cresswell",
+    "typeOfWorkItem": "Offered",
+    "filterId": "1",
+    "sort": "appNameasc",
+    "coloumns": [
+      "name,version,description,state,id,priority,startDate,endDate,appName"
+    ],
+    "users": "tibco-admin",
+    "authors": "tibco-admin"
+  },
+  "workViewforConfig": {
+    "name": "Created work view for Config screen test",
+    "desc": "desc"
+  },
+  "WorkItem": {
+    "workItemHeader": [
+      "Work Item ID",
+      "Activity Name",
+      "User",
+      "First Offer Time",
+      "State",
+      "Event Links"
+    ],
+    "activityNameFilter": "AuditDetailsFromUsers",
+    "WorkItemAuditDetailsHeader": [
+      "Event ID",
+      "Message ID",
+      "Creation Time",
+      "Severity",
+      "Principal ID",
+      "Managed Obj Name",
+      "App Activity Name"
+    ]
+  },
+  "ColumnSelector": {
+    "PID": "Process Instance ID",
+    "ActivityName": "Activity Name",
+    "Type": "Type",
+    "Priority": "Priority"
+  },
+  "workItemRow": {
+    "WorkItemID": "",
+    "ActivityName": "InputNum1andNum2",
+    "User": "",
+    "State": "OFFERED",
+    "EventLinks": {
+      "RelatedWorkItems": "Related work items",
+      "RelatedCases": "Related cases"
+    }
+  },
+  "WorkItemAuditDetails": {
+    "EventID": "",
+    "MessageID": "BRM_WORKITEM_SCHEDULED",
+    "CreationTime": "Creation Time",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": "",
+    "AppActivityName": "InputNum1andNum2"
+  },
+  "WorkItemAuditDetailsLastRow": {
+    "AppActivityName": "AuditDetailsFromUsers"
+  },
+  "relatedWorkItemrow": {
+    "WorkItemID": "",
+    "ActivityName": "InputNum1andNum2",
+    "User": "",
+    "State": "OFFERED",
+    "EventLinks": {
+      "ReferenceddWorkItems": "Referenced work items",
+      "RelatedWorkItems": "Related work items"
+    }
+  },
+  "PrcoessInstance": {
+    "PrcoessInstanceHeader": [
+      "Process Instance ID",
+      "Priority",
+      "User",
+      "State",
+      "Status Changed On",
+      "Start date",
+      "Event Links"
+    ]
+  },
+  "processinstanceRow": {
+    "PID": "",
+    "Priority": "NORMAL",
+    "User": "tibco-admin",
+    "State": "STARTED",
+    "EventLinks": "Referenced work items"
+  },
+  "ptProcessInstanceRowHeader": {
+    "ptProcessInstanceRowHeaderArr": [
+      "Process Instance ID",
+      "Priority",
+      "User",
+      "State",
+      "Status Changed On",
+      "Start date",
+      [
+        "Referenced work items",
+        "Referenced processes",
+        "Referenced cases",
+        "Source process template"
+      ]
+    ]
+  },
+  "ptProcessInstanceRowDetails": {
+    "PID": "",
+    "Priority": "NORMAL",
+    "User": "tibco-admin",
+    "State": "STARTED",
+    "StateChangedOn": "",
+    "StartDate": "",
+    "EventLinks": {
+      "ReferencedWorkItems": "Referenced work items",
+      "ReferencedProcesses": "Referenced processes",
+      "ReferencedCases": "Referenced cases",
+      "SourceProcessTemplate": "Source process template"
+    }
+  },
+  "piAuditDetails": {
+    "EventID": "",
+    "MessageID": "BX_INSTANCE_TASKS_CREATED",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": "HaltRetryProjectProcess",
+    "AppActivityName": "InputNum1andNum2"
+  },
+  "caseAuditDetails": {
+    "EventID": "",
+    "MessageID": "CDM_CASE",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": "com.example.samplebdsproject1.Order-1-0"
+  },
+  "API": {
+    "ldapName": "Auto created container",
+    "ldapDesc": "desc of auto ldap",
+    "alias": "easyAs",
+    "resourceName": "Tony Pulis",
+    "labelName": "Tony Pulis",
+    "dn": "ou"
+  },
+  "Audit": {
+    "header": {
+      "tableHeader": [
+        "User Resource Id",
+        "Name",
+        "State",
+        "Creation Time",
+        "LDAP Container ID"
+      ]
+    },
+    "ptHeader": {
+      "ptTableHeader": [
+        "Process Template ID",
+        "State",
+        "Process Template Name",
+        "Version",
+        "Deployed Time",
+        "Event Links"
+      ]
+    },
+    "appHeader": {
+      "appTableHeader": [
+        "Application ID",
+        "Name",
+        "Version",
+        "State",
+        "Deployment Date",
+        "Event Links"
+      ]
+    },
+    "sysHeader": {
+      "sysTableHeader": [
+        "Event ID",
+        "Message Category",
+        "Message ID",
+        "Severity",
+        "Creation Date",
+        "Principal Name",
+        "Managed Obj Name"
+      ]
+    },
+    "filter": {
+      "title": "Filters",
+      "subtitle": "Create new filter",
+      "name": "Test Filter",
+      "deleted": "DELETED",
+      "created": "CREATED",
+      "offered": "OFFERED",
+      "failed": "FAILED",
+      "started": "STARTED",
+      "deployed": "DEPLOYED",
+      "undeployed": "UNDEPLOYED",
+      "undeploying": "UNDEPLOYING"
+    },
+    "sysServerityFilter": {
+      "debug ": "Debug",
+      "service": "Service",
+      "info": "Info",
+      "audit": "Audit",
+      "warn": "Warn",
+      "error": "Error",
+      "trace": "Trace",
+      "fatal": "Fatal"
+    },
+    "sysMsgCategoryFilter": {
+      "processTemplate": "ProcessTemplate",
+      "processInstance": "ProcessInstance",
+      "workGroup": "WorkGroup",
+      "workItem": "WorkItem",
+      "globalData": "GlobalData",
+      "globalDataAdmin": "GlobalDataAdmin",
+      "document": "Document",
+      "globalDataNotification": "GlobalDataNotification",
+      "caseData": "CaseData",
+      "deployment": "Deployment",
+      "user": "User",
+      "unknwown": "Unknown",
+      "organizationalEntity": "OrganizationalEntity",
+      "admin": "Admin",
+      "workModel": "WorkModel",
+      "worktype": "WorkType",
+      "channel": "Channel",
+      "scriptType": "ScriptType",
+      "resource": "Resource",
+      "security": "Security",
+      "ldapContainer": "LdapContainer",
+      "orgModel": "OrgModel",
+      "userSetting": "UserSetting",
+      "ldapRequest": "LdapRequest",
+      "eqlRequest": "RqlRequest",
+      "brmApiSecurity": "BrmApiSecurity",
+      "dynamicRqlRequest": "DynamicRqlRequest",
+      "candidateQuery": "CandidateQuery",
+      "component": "Component",
+      "Event": "Event",
+      "form": "Form",
+      "pageflow": "PageFlow",
+      "calendar": "Calendar",
+      "calendarApiSecurity": "CalendarApiSecurity",
+      "pfeApiSecurity": "PfeApiSecurity",
+      "globalSignal": "GlobalSignal",
+      "cloudEngine": "CloudEngine"
+    },
+    "coloumn": {
+      "header": "Column Selector",
+      "displayName": "Display Name",
+      "nameColoumn": "Name",
+      "moduleName": "Module Name",
+      "stateColumn": "State",
+      "type": "type",
+      "severityColumn": "Severity",
+      "messageColumn": "Message Category",
+      "messageCategory": "Message Category",
+      "managedObjVersion": "Managed Obj Version",
+      "messageIdColumn": "Message ID"
+    }
+  },
+  "processTemplateRow": {
+    "ptID": "",
+    "ptState": "DEPLOYED",
+    "ptName": "HaltRetryProjectProcess",
+    "ptVersion": "4.0.0.20241023062633670",
+    "ptDeployedTime": "",
+    "noProcessTemplates": "No process templates",
+    "auditDetailsNotFound": "No audit details for this event",
+    "noProcessInstances": "No process instance available",
+    "savedFilterName": "PT_AutoFilter",
+    "EventLinks": {
+      "ProcessInstances": "Process instances",
+      "Applications": "Applications"
+    }
+  },
+  "processTemplateRow4x": {
+    "ptID": "",
+    "ptState": "DEPLOYED",
+    "ptName": "ProjectForAuditProcess",
+    "ptVersion": "1.0.0.20260518125018579",
+    "ptDeployedTime": "",
+    "noProcessTemplates": "No process templates",
+    "auditDetailsNotFound": "No audit details for this event",
+    "noProcessInstances": "No process instance available",
+    "savedFilterName": "PT_AutoFilter",
+    "duplicateFilterName": "PT_DupFilter",
+    "severityValue": "AUDIT",
+    "severityValueEdited": "INFO",
+    "filterLabelSeverity": "severity = 'AUDIT'",
+    "ruleFieldSearchText": "Severity",
+    "settingsSavedMsg": "Settings saved successfully",
+    "saveQueryDialogTitle": "Save query for selected filters",
+    "alreadyExistsError": "A filter with the same name already exists. Please choose a different name.",
+    "noFilterAppliedMsg": "No filter applied. To get started, add rules.",
+    "deleteFilterTitle": "Delete filter",
+    "deleteFilterConfirmMsg": "Are you sure you want to delete?",
+    "deleteFilterPermanentMsg": "This action is permanent and cannot be undone.",
+    "EventLinks": {
+      "ProcessInstances": "Process instances",
+      "Applications": "Applications"
+    }
+  },
+  "processTemplateRowDetails": {
+    "processTemplateName4x": "ProjectForAuditProcess",
+    "processTemplateRowDetailsArr": [
+      "",
+      "DEPLOYED",
+      "HaltRetryProjectProcess",
+      "4.0.0.20241023062633670",
+      "",
+      "Process instances",
+      "Applications"
+    ],
+    "_commented_out": [
+      "Applications"
+    ]
+  },
+  "ptHeader": {
+    "ptID": "Process Template ID",
+    "ptState": "State",
+    "ptName": "Process Template Name",
+    "ptVersion": "Version",
+    "ptDeployedTime": "Deployed Time",
+    "ptEventLinks": "Event Links"
+  },
+  "applicationeRow": {
+    "applicationeRowArr": [
+      "",
+      "HaltRetryProject",
+      "4.0.0.20241023062633670",
+      "DEPLOYED",
+      "",
+      "Process templates"
+    ]
+  },
+  "appHeader": {
+    "appID": "Application ID",
+    "appName": "Name",
+    "appVersion": "Version",
+    "appState": "State",
+    "appDeployedDate": "Deployment Date",
+    "appEventLinks": "Event Links"
+  },
+  "ptAuditDetailsHeader": {
+    "ptAuditDetailsHeaderArr": [
+      "Event ID",
+      "Message ID",
+      "Creation Time",
+      "Severity",
+      "Principal ID",
+      "Managed Obj Name"
+    ]
+  },
+  "ptAuditDetails": {
+    "ptAuditDetailsArr": [
+      "",
+      "WP_APPLICATION_DEPLOYED",
+      "Creation Time",
+      "Audit",
+      "tibco-admin",
+      "HaltRetryProject"
+    ]
+  },
+  "appAuditDetails": {
+    "EventID": "",
+    "MessageID": "WP_APPLICATION_DEPLOYED",
+    "CreationTime": "Creation Time",
+    "Severity": "Audit",
+    "PrincipalID": "tibco-admin",
+    "ManagedObjName": ""
+  },
+  "AuditCases": {
+    "AuditCaseHeader": [
+      "OrderID",
+      "OrderState",
+      "Name",
+      "Quantity",
+      "Product",
+      "Text",
+      "Date",
+      "Event Links"
+    ],
+    "caseAuditDetailsHeader": [
+      "Event ID",
+      "Message ID",
+      "Creation Time",
+      "Severity",
+      "Principal ID",
+      "Managed Object ID"
+    ],
+    "caseAuditDetailsrow": {
+      "Severity": "Audit",
+      "PrincipalID": "tibco-admin"
+    }
+  },
+  "process": {
+    "processHeader": [
+      "",
+      "Process Instance ID",
+      "Priority",
+      "Start Time",
+      "State",
+      "Process Name",
+      "Process ID",
+      "Start Date",
+      "Created Date",
+      "Actions"
+    ],
+    "BPMCreateCaseProcess": {
+      "moduleName": "/BPMSimpleCaseActionProject/Process Packages/ApprovalTestProject.xpdl",
+      "processName": "BPMCreateCaseProcess"
+    },
+    "findInstances": {
+      "packageNameInput": "/BPMSimpleCaseActionProject/Process Packages/ApprovalTestProject.xpdl",
+      "packageDisplayName": "ApprovalTestProject",
+      "processNameInput": "BPMCreateCaseProcess",
+      "versionInput": "2.0.0.20260407124218271",
+      "priorityInput": "200"
+    },
+    "bulkProcess": {
+      "suspendConfirmationBodyText": "Are you sure you want to perform the Suspend action on all the selected instances?",
+      "resumeConfirmationBodyText": "Are you sure you want to perform the Resume action on all the selected instances?",
+      "cancelConfirmationBodyText": "Are you sure you want to cancel selected instances"
+    },
+    "migration": {
+      "packageName": "RestPEMigration",
+      "processName": "RestPEMigrationProcessA",
+      "version": "1.0.0.2",
+      "defaultSelectedVersion": "1.0.0.2",
+      "sourceVersion": "1.0.0.3",
+      "destinationVersion": "1.0.0.5",
+      "sameDestinationVersion": "1.0.0.3",
+      "migrateFromItems": [
+        "UT1_A",
+        "UT2_A",
+        "EndEvent",
+        "ScriptTaskWithError"
+      ],
+      "migrateToItems": [
+        "UT1_A",
+        "UT2_A",
+        "EndEvent",
+        "ScriptTaskWithError"
+      ],
+      "noMigrationToPlaceholder": "Select version destination for 'Migrate to'",
+      "migrateConfirmDialogText": "Migrate Process, are you sure?",
+      "deleteAllRulesConfirmDialogText": "Are you sure you want to delete the migration rule(s)?",
+      "editRulePoint": "EndEvent",
+      "updatedRuleText": "Version [1.0.0.3 ] to Version [1.0.0.5 ].  Point:EndEventUpdated",
+      "deleteRulePoint": "EndEventUpdated"
+    }
+  },
+  "signOutUrl": "https://www.google.com/",
+  "getDetailsForApproval": {
+    "caseState1": "YES",
+    "firstName": "UnifiedUI",
+    "lastName": "e2e",
+    "updatedCaseState1": "INPROGRESS",
+    "updatedCaseState2": "NO",
+    "updatedFirstName": "UnifiedUI Updated",
+    "updatedFirstName1": "UI",
+    "updatedCaseState1_2nd": "SPECIALCHARS",
+    "updatedLastName": "e2e 2nd Update"
+  },
+  "fillDetailsFromUser": {
+    "customerName": "Clint Hill",
+    "customerAddress": "UK"
+  },
+  "CREATE_SCRIPT_CONTENT": [
+    "TIBCO HEADER",
+    "BOM Name           : Approval.bom",
+    "BOM Namespace      : com.example.caseactionstudy",
+    "Namespace Tag      : CASEACTIONSTUDY",
+    "BOM Major Version  : 2",
+    "create table",
+    "[BDS_ID] bigint not null",
+    "[CASEID] numeric(31,0) not null unique"
+  ],
+  "DROP_SCRIPT_CONTENT": [
+    "TIBCO HEADER",
+    "drop table if exists"
+  ],
+  "caseManagerFilter": {
+    "CaseID": "CaseID",
+    "greaterThanOrEqual": "GTE",
+    "filterValue": "159",
+    "caseState": "INPROGRESS",
+    "updatedCaseState": "YES",
+    "advancedCaseState": "SPECIALCHARS"
+  },
+  "saveSearch": {
+    "name": "Test Saved Search",
+    "description": "Automated test saved search",
+    "category": "Test Category"
+  },
+  "calendarurl": "http://gasdbpmrhel8x01.dev.tibco.com/apps/calendar/#/calendar",
+  "username": "tibco-admin",
+  "password": "secret",
+  "appName": "SampleTest",
+  "BsName": " SampleTest ",
+  "bsName": "SampleTest-Process-Start Event",
+  "C_Org1": "PUSHOrganizationModel",
+  "C_Org2": "SimpleOrgModel",
+  "DO_GETTOWNPARAM": "gettownparam",
+  "DO_TOWNNAME1": "London",
+  "DO_TOWNNAME2": "Swindon",
+  "DO_TOWNNAME3": "Paris",
+  "OrgModelSaniity": "OrgBrowserTest",
+  "ERPPProcessUserTask": "ExtRefProcessUserTask",
+  "DynamicOrgModel": "DynamicOrg",
+  "DynamicOrgApp": "DynamicOrgBPMProject",
+  "DynamicOrgBDS": "DynamicOrgBDSProject",
+  "DynamicOrgBPM": "DynamicOrgBPMProject",
+  "dynamicOrgPackageName": "DynamicOrgBPMProject",
+  "19l02Url": "http://gasdbpmwin19l02.dev.tibco.com:8080",
+  "DynamicOrgBDSRasc": "DynamicOrgBDSProject-prod-1.1.rasc",
+  "DynamicOrgProcessRasc": "DynamicOrgBPMProject-prod-1.7.rasc",
+  "DynamicOrgModelRasc": "DynamicOrg-prod-1.1.rasc",
+  "EmailApp": "Process_EmailTask_Auto",
+  "EmailProcessName": "Process_EmailTask_AutoProcess",
+  "EmailAppBSName": "Process_EmailTask_Auto-Process2",
+  "EmailBSUTName": "Process Email Task Auto Ut",
+  "BSEmailAddfield1": "EmailAddress",
+  "EmailAddress": "ybhelkar@tibco.com",
+  "EmailAppCategoryName": "Process_EmailTask_Auto",
+  "DO_ERPP_ProcessName": "ExternalRefereceParticipantProcess",
+  "DO_RRPP_ProcessName": "RQLReferenceParticipantProcess",
+  "RRPPProcessUserTask": "RQLReferenceProcessUserTask",
+  "DO_DPP_ProcessName": "DynamicPerformerProcess",
+  "DPProcessUserTask": "DynamicPerformerUserTask",
+  "BSEmailfield2": "TextField1",
+  "CaseApp": " Process_CaseTest_Auto ",
+  "CaseProcessName": "Process_CaseTest_AutoProcess",
+  "CaseAppCategoryName": " Process_CaseTest_Auto ",
+  "CaseAppBSName": "Process_CaseTest_Auto-Process2",
+  "processTemplateName": "SampleTestProcess",
+  "workitemName": "SampleUserTask",
+  "workItem": "Sample User Task",
+  "SMTPconnectionName": "EmailSender",
+  "SMTPMachineName": "smtp-relay-internal.tibco.com",
+  "SMTPPort": "25",
+  "SMTPUserName": "tibco-admin",
+  "SMTPpwd": "secret",
+  "PositionName": "Position1",
+  "DM_MachineName": "10.97.109.93",
+  "HTTP_Port": "38080",
+  "OrgModel": "OrgTest_Auto",
+  "CaseDataModel": "CaseTest_Auto",
+  "ProcessEmail": "Process_EmailTask_Auto",
+  "ProcessCase": "Process_CaseTest_Auto",
+  "LDAPName": "LDAP_BPME_BAT_Test",
+  "OrgUnitName": "TestBATOrgUnit1",
+  "TestGrpName": "TestGroup_Auto",
+  "EmailUT1": "BeforeEmailTask",
+  "EmailUT2": "AfterEmailTask",
+  "CaseUT1": "EnterCaseID",
+  "CaseParallelUT1": "CaseUserTask1",
+  "CaseParallelUT2": "CaseUserTask2",
+  "CaseID": "371195",
+  "UpdateCaseAction": "Process_CaseTest_Auto-UpdateCase",
+  "DeleteCaseAction": "Process_CaseTest_Auto-DeleteCase",
+  "AppDevAppName": "AppDev_Auto_Test.app",
+  "CYP_AppName": "CYP_AppDev_TestApp",
+  "PM_Reg_App1": "PM_HaltRetryProject_Auto",
+  "PM_Reg_App2": "PMTestProject_Auto",
+  "PM_Reg_App3": "ABCSimpleTestProject",
+  "PM_Reg_App1_Process": "PM_HaltRetryProjectProcess_Auto",
+  "PM_Reg_App2_Process": "PMTestProjectProcess_Auto",
+  "PM_Reg_App3_Process": "ABCSimpleTestProjectProcess",
+  "PM_Reg_App1_UT1": "PM_Auto_InputNum1andNum2",
+  "DM_Reg_PApp1": "TestProcess_Project_Auto",
+  "DM_Reg_PApp2": "SimpleTestProcess_Auto",
+  "DM_Reg_Org_App": "OrgTestProject_Auto",
+  "DM_Reg_case_App1": "Order-CaseModel_Auto",
+  "Case_AppVersion": " 1.1.0.20210111164223486 ",
+  "DM_Reg_PApp3": "OrderTemplate_Auto",
+  "DM_Reg_PApp4": "WCPTriggerPatterns_Auto",
+  "DM_Reg_Org_App2": "WCPOrgModel-New-Org_Auto",
+  "DM_SMTP_Con": "Auto_EmailSender",
+  "DM_HTTP_Con": "BW_3826_Rest_Def-Service",
+  "DatatypesGlobalSignalThrowProcess": "DataTypesGlobalSignalThrowProcessProcess",
+  "DM_Reg_PApp3_Process": "OrderTemplate_AutoProcess",
+  "DM_Reg_PApp4_Process1": "WCP23TransientTriggerinternaltrigger_Auto",
+  "DM_Reg_PApp4_Process2": "WCP24PersistentTriggerinternaltrigger_Auto",
+  "DM_Case_WIName_1": "InputDetails",
+  "DM_Case_WIName_2": "ViewDetails",
+  "AppDev_app1": "albumCovers_auto.app",
+  "AppDev_app1_copy": "albumCopy",
+  "AppDev_blankApp1": "AppDev_TestApp",
+  "AppDev_blankApp2": "AppDev@TestApp!",
+  "AppDev_blankApp3": "AppDev_TestApp2",
+  "DatatypesGlobalSignal": "DataTypesGlobalSignal",
+  "DatatypesGlobalSignalCatch": "DatatypesCatchGlobalSignalProcess",
+  "DatatypesGlobalSignalThrow": "DataTypesGlobalSignalProcess",
+  "SignalsBom": "SignalsBOM",
+  "AppLaunch_published": "/userapps/albumCovers_auto.app/index.html",
+  "CYP_AppName_AppDev": "albumCovers_auto.app",
+  "CM_Product_App": "Product",
+  "CM_Product_Model": "ProductModel",
+  "CM_Product_CaseTypeName": "Product",
+  "CM_Product_ProcessName": "ProductProcess",
+  "CM_WI_Name_ProductDetails": "ProductDetails",
+  "CM_WI_Name_ViewProductDetails": "ViewProductDetails",
+  "CM_ProductDataModel_ID": "100",
+  "CM_ProductDataModel_Name": "Lenovo Thinkpad T480",
+  "CM_ProductDataModel_Quantity": "60",
+  "CM_ProductDataModel_OrderDate": "2021-01-13",
+  "CM_ProductDataModel_Refurbished": "true",
+  "CM_ProductDataModel_ProductStates": [
+    "Ordered",
+    "Dispatched",
+    "Received",
+    "Returned",
+    "Completed"
+  ],
+  "CM_Product_DefaultFormFields": [
+    "ProductStates",
+    "ID",
+    "Name",
+    "Quantity",
+    "OrderDate",
+    "Refurbished"
+  ],
+  "CM_CaseAction_Names": [
+    "ViewOrder",
+    "ActionOnOrdered",
+    "ActionOnDispatched",
+    "ActionOnReceived"
+  ],
+  "CM_ProductModel_UpdatedData": {
+    "Name": "Lenovo Thinkpad T490",
+    "Quantity": "80",
+    "OrderDate": "2021-02-12",
+    "Refurbished": "false",
+    "ProductStates": "Dispatched"
+  },
+  "CM_Order": "Order",
+  "CM_ItemOrder": "ItemOrder",
+  "CM_ItemOrder_ProcessName": "ItemOrderProcess",
+  "CM_WI_Name_GetOrder": "GetOrder",
+  "CM_WI_Name_GetAdditionalOrder": "GetAdditionalOrder",
+  "CM_WI_GetOrderData": {
+    "OrderID": "1",
+    "OrderName": "BPME"
+  },
+  "CM_WI_GetAdditionalOrderData": {
+    "AdditionalOrderID": "1",
+    "AdditionalOrderName": "ContainerEdition"
+  },
+  "CM_Order_DataModel_ProductStates": [
+    "Picked",
+    "Packed",
+    "Delievred"
+  ],
+  "CM_Order_CaseTypeName": "Order",
+  "CM_AdditionalOrder_CaseTypeName": "AdditionalOrder",
+  "CM_Order_DefaultFormFields": [
+    "OrderState",
+    "OrderID",
+    "OrderName"
+  ],
+  "CM_AdditionalOrder_DefaultFormFields": [
+    "AdditionalOrderState",
+    "AdditionalOrderID",
+    "AdditionalOrderName"
+  ],
+  "CM_Searchable": "Searchable",
+  "CM_Search": "Search",
+  "CM_Search_ProcessName": "SearchProcess",
+  "CM_WI_Name_EnterInput1": "EnterInput1",
+  "CM_WI_Name_EnterInput2": "EnterInput2",
+  "CM_WI_EnterInputData1": {
+    "ID": "1",
+    "Date": "2021-01-29",
+    "Number": "10"
+  },
+  "CM_WI_EnterInputData2": {
+    "ID": "2",
+    "Date": "2021-01-31",
+    "Number": "20"
+  },
+  "CM_Search_DataModel_SearchableStates": [
+    "Start",
+    "Middle",
+    "End"
+  ],
+  "CM_Search_CaseTypeName": "Search",
+  "CM_WI1_Date": "29 Jan 2021",
+  "CM_WI2_Date": "31 Jan 2021",
+  "CDM_DocUpload": {
+    "HTML": "SampleHTML.html",
+    "TXT": "SampleTXT.txt",
+    "PDF": "SamplePDF.pdf",
+    "GIF": "SampleGIF.gif",
+    "JPG": "SampleJPG.jpg",
+    "DOC": "SampleDOC.doc"
+  },
+  "DO_WI_ERPP": {
+    "EmpId": "1",
+    "Name": "XYZ",
+    "DepartmentId": "12",
+    "EmailId": "xyz@tibco.com",
+    "MobileNo": "123456789"
+  },
+  "DO_WI_RRPP": {
+    "EmpId": "2",
+    "Name": "PQR",
+    "DepartmentId": "123",
+    "EmailId": "pqr@tibco.com",
+    "MobileNo": "123456789"
+  }
+}

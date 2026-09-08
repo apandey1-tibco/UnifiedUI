@@ -1,0 +1,25 @@
+{
+  "name": "downloads",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pre:req": "npm install",
+    "test": "npx playwright test --workers=1",
+    "allure:report": "allure generate allure-results -o allure-report --clean",
+    "report": "allure open ./allure-report",
+    "allure:clear": "rd /s /q allure-results && rd /s /q allure-report",
+    "post:test": "npm run allure:report"
+  },
+  "keywords": [],
+  "author": "Arshad Chilakwad",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.2",
+    "allure-playwright": "^3.0.1",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.4"
+  }
+}

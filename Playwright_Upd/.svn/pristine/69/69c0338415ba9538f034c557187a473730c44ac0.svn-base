@@ -1,0 +1,160 @@
+import { type Locator, type Page, request, expect } from "@playwright/test";
+import * as utility from "../fixtures/utility";
+import { log } from "console";
+export class DeploymentManagerPage {
+  readonly page: Page;
+  readonly adminUrl: Locator;
+  readonly newDeploymentBtn: Locator;
+  readonly deployBtn: Locator;
+  readonly selectRascFileBtn: Locator;
+  readonly undeploy: Locator;
+  readonly undeployHeader: Locator;
+  readonly yesUnDeployBtn: Locator;
+  readonly deploymentTable: Locator;
+  readonly allDeploymentTab: Locator;
+  constructor(page: Page) {
+    this.page = page;
+    this.newDeploymentBtn = page.getByRole("button", {
+      name: "New deployment",
+    });
+    this.yesUnDeployBtn = page.getByRole("button", { name: "Yes, undeploy" });
+    this.deployBtn = page.getByRole("button", { name: "Deploy", exact: true });
+    this.selectRascFileBtn = page.getByRole("button", {
+      name: "Select RASC file",
+    });
+    this.undeploy = page.getByRole("menuitem", { name: "Undeploy" });
+    this.undeployHeader = page.locator(".msg-text.ng-star-inserted");
+    this.deploymentTable = page.locator(".mat-table.cdk-table.main-table");
+    this.allDeploymentTab = page.getByText(" All Deployments ");
+  }
+
+  async deployRascFiles(name: string, fileName: string) {
+    await this.page.waitForTimeout(2000);
+    const deployBodyText: string = await this.page
+      .locator(".deploy-body")
+      .innerText();
+
+    if (deployBodyText.includes(name)) {
+      console.log(`${name} App is already deployed!`);
+    } else {
+      console.log(`Deploying the  Project ${name}`);
+      await this.newDeploymentBtn.click();
+      // Deploying the project
+      await this.page.setInputFiles(
+        'input[type="file"]',
+        `./fixtures/${fileName}`
+      );
+      await this.deployBtn.click();
+      const txtRasc = await this.getDragFileMenu();
+      expect(await txtRasc.innerText()).toContain("Drag a RASC file");
+      await this.allDeploymentTab.click();
+      await this.page.waitForTimeout(2000);
+    }
+  }
+
+  async purgeProcess(rascName: string) {
+    await this.page
+      .getByRole("row", { name: rascName })
+      .getByRole("button")
+      .click();
+    await this.page.getByRole("menuitem", { name: "Details" }).click();
+    await this.page.getByText("Process instances").click();
+    //3 dots
+    await this.page.locator("app-templates svg").click();
+    await this.page.getByRole("menuitem", { name: "Purge" }).click();
+    await this.page.getByRole("button", { name: "Yes, purge" }).click();
+    await this.page.waitForTimeout(500);
+  }
+
+  async deleteFilteredCase(
+    fileName: string,
+    orderName: string,
+    orderState: string
+  ) {
+    await this.page
+      .getByRole("row", { name: fileName })
+      .getByRole("button")
+      .click();
+    await this.page.getByRole("menuitem", { name: "Details" }).click();
+    await this.page.getByText("Case/Data models").click();
+    await this.page
+      .locator("#tab-switch")
+      .getByText(orderName, { exact: true })
+      .click();
+    await this.page.locator("mat-toolbar").getByRole("button").nth(1).click();
+    await this.page
+      .locator("div")
+      .filter({ hasText: /^Filter by State$/ })
+      .nth(1)
+      .click();
+    await this.page.getByRole("option", { name: orderState }).click();
+    await this.page.getByLabel("Filter by Last Modified").click();
+    await this.page.getByLabel("Open calendar").click();
+    await this.page.locator(".mat-calendar-body-today").click();
+    await this.page.getByRole("button", { name: "Apply" }).click();
+    await this.page.getByRole("button", { name: "Delete cases" }).click();
+    await this.page.getByRole("button", { name: "Yes, delete" }).click();
+  }
+
+  async undeployFiles(rascName: string) {
+    await this.page
+      .getByRole("row", { name: rascName })
+      .getByRole("button")
+      .click();
+    await this.undeploy.click();
+    //header verify
+    expect(this.undeployHeader).toHaveText(
+      "Are you sure you want to undeploy this file ?"
+    );
+    await this.yesUnDeployBtn.click();
+    await this.page.waitForTimeout(1000);
+    const deployBodyText: string = await this.page
+      .locator(".deploy-body")
+      .innerText();
+    expect(deployBodyText).not.toContain(rascName);
+  }
+
+  async logout() {
+    await this.page.locator(".nav-item.app-profile").click();
+    await this.page.locator(".sign-out-label").click();
+    await this.page.close();
+  }
+
+  ///xpaths
+  async getDeployedAppList(): Promise<Locator> {
+    return this.page.locator(".cdk-table.main-table");
+  }
+  async getDragFileMenu(): Promise<Locator> {
+    return this.page.locator(".file-select");
+  }
+
+  async getAppType(appName: string): Promise<Locator> {
+    return this.page.locator(
+      `//mat-row//mat-cell[normalize-space()="${appName}"]/following-sibling::mat-cell[5]`
+    );
+  }
+
+  async getAppStatus(appName: string): Promise<Locator> {
+    return this.page.locator(
+      `//mat-row//mat-cell[normalize-space()="${appName}"]/following-sibling::mat-cell[3]`
+    );
+  }
+
+  async DeployedAndUnDeployingCount(name: string): Promise<Locator> {
+    return this.page.locator(
+      `//div[@class="icon-container"]/following::span[text()="${name}"]/following::span[1]`
+    );
+  }
+
+  async getAppVersion(appName: string): Promise<Locator> {
+    return this.page.locator(
+      `//mat-row//mat-cell[normalize-space()="${appName}"]/following-sibling::mat-cell[1]`
+    );
+  }
+
+  async getAction(appName: string): Promise<Locator> {
+    return this.page.locator(
+      `//mat-row//mat-cell[normalize-space()="${appName}"]/following-sibling::mat-cell[6]//button`
+    );
+  }
+}

@@ -1,0 +1,86 @@
+import { type Locator, type Page, request } from "@playwright/test";
+export class WorkListPage {
+  readonly page: Page;
+  readonly orderID: Locator;
+  readonly name: Locator;
+  readonly quantity: Locator;
+  readonly product: Locator;
+  readonly date: Locator;
+  readonly time: Locator;
+  readonly submitBtn: Locator;
+  readonly orderState: Locator;
+  readonly cancelBtn: Locator;
+  // readonly workManagerUrl: Locator;
+  constructor(page: Page) {
+    this.page = page;
+    this.orderID = page.getByLabel("OrderID");
+    this.name = page.getByRole("textbox", { name: "Name" });
+    this.quantity = page.getByLabel("Quantity");
+    this.product = page.getByLabel("Product");
+    this.date = page
+      .locator(".advanced-TextButtonPanel.control-widget.tf-widget-date")
+      .locator(".selected-value.form-control");
+    this.submitBtn = page.getByTitle("Submit");
+    this.cancelBtn = page.getByTitle("Cancel");
+    this.time = page
+      .locator(".advanced-TextButtonPanel.control-widget.tf-widget-time")
+      .locator(".selected-value.form-control");
+    this.orderState = page.locator(
+      ".gwt-ListBox.control-widget.form-control.control-lg.tf-select-fixer"
+    );
+  }
+
+  async enterTime(time: string) {
+    this.time.fill(time);
+  }
+  async selectOrderState(state: string) {
+    await this.page.getByLabel("OrderState").selectOption(state);
+  }
+  async getOrderState(): Promise<Locator> {
+    return this.page.locator(
+      ".gwt-ListBox.control-widget.form-control.control-lg.tf-select-fixer"
+    );
+  }
+  async getName(): Promise<Locator> {
+    return this.name;
+  }
+  async enterDate(): Promise<Locator> {
+    await this.date.click();
+    return this.date;
+  }
+  async enterWorklistDetaisl(
+    value: string,
+    state: string,
+    name: string,
+    quant: string,
+    product: string,
+    time: string,
+    date: string
+  ) {
+    await this.orderID.fill(value);
+    await this.selectOrderState(state);
+    await this.name.fill(name);
+    await this.quantity.fill(quant);
+    await this.product.fill(product);
+    await this.page.waitForTimeout(1000);
+    await this.time.pressSequentially(time, { delay: 100 });
+    await this.page.waitForTimeout(1000);
+    await this.date.pressSequentially(date, { delay: 100 });
+  }
+
+  async enterOnlyMandatoryDetails(orderID: string, state: string) {
+    await this.orderID.fill(orderID);
+    await this.selectOrderState(state);
+    await this.cancelBtn.click();
+    //await this.submitBtn.click();
+  }
+  async selectDateandTime() {
+    // //calendar
+    await this.page
+      .locator(
+        "#f1_widget_control_OrderDataIn_dateTimeandTimezoneField > table > tbody > tr > td:nth-child(2) > div"
+      )
+      .click();
+    await this.page.getByRole("button", { name: "OK" }).click();
+  }
+}

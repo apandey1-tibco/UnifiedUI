@@ -1,0 +1,119 @@
+import { type Locator, type Page } from "@playwright/test";
+import * as utility from "../fixtures/utility";
+
+export class HomePage {
+  page: Page;
+  readonly myWork: Locator;
+  readonly myWorkViews: Locator;
+  readonly createWorkViewBtn: Locator;
+  readonly buisnessServices: Locator;
+  readonly caseManager: Locator;
+  readonly BS_Simple: Locator;
+  readonly cancelBtn: Locator;
+  readonly submitBtn: Locator;
+  readonly closeBtn: Locator;
+  readonly open: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.cancelBtn = page.getByTitle("Cancel");
+    this.submitBtn = page.getByTitle("Submit");
+    this.closeBtn = page.getByTitle("Close");
+    this.myWork = page
+      .locator("twc-navmenu-item")
+      .filter({ hasText: "My Work" })
+      .locator("svg");
+    this.caseManager = page
+      .locator("twc-navmenu-item")
+      .filter({ hasText: "Case Manager" })
+      .locator("svg");
+    this.myWorkViews = page.getByText("Work views", { exact: true });
+    this.createWorkViewBtn = page
+      .locator("twc-toolbar-item")
+      .filter({ hasText: "Create Create" })
+      .locator("path");
+    this.buisnessServices = page.locator("#bpmBizServices svg");
+    this.BS_Simple = page
+      .locator("div")
+      .filter({ hasText: /^SampleBPMOrderProject$/ });
+    this.open = page.getByRole("button", { name: "Open" });
+  }
+
+  async clickOnCancelBtn() {
+    await this.cancelBtn.click();
+  }
+  async clickOnSubmitBtn() {
+    await this.submitBtn.click();
+  }
+  async clickMyWork() {
+    await this.myWork.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.locator("twc-table-row").first().waitFor();
+  }
+
+  async clickCaseManager() {
+    await this.caseManager.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.locator("twc-table-row").first().waitFor();
+  }
+
+  async clickOnWorkViews() {
+    await this.myWorkViews.click();
+  }
+  async clickOnSampleOrderProcess() {
+    //star icon
+    await this.page.getByText("SampleBPMOrderProject-Process").click();
+  }
+  async clickOnCreateWorkiView() {
+    await this.createWorkViewBtn.click();
+  }
+
+  // opens the worklist
+  async openWorklist(name: string) {
+    await this.page.getByRole("cell", { name: name }).last().hover();
+    await this.open.click();
+  }
+  async isWorkItemPresent(name: string): Promise<Boolean> {
+    return await this.page.getByRole("cell", { name: name }).last().isVisible();
+  }
+  async workViewDropdown(value: string) {
+    await this.page.getByRole("combobox").click();
+    await this.page
+      .getByRole("option", { name: value })
+      .locator("slot")
+      .nth(1)
+      .click();
+  }
+  async deleteWorkView(name: string) {
+    await this.page
+      .getByRole("menuitem", { name: name })
+      .getByLabel("More")
+      .click();
+    await this.page
+      .getByRole("menuitem", { name: "Delete" })
+      .locator("div")
+      .first()
+      .click();
+  }
+  async clickOnYes() {
+    await this.page.getByRole("button", { name: "Yes" }).click();
+  }
+  async clickOnBuisnessService() {
+    await this.buisnessServices.click();
+  }
+
+  async goToWorkManagerUrl(url: string) {
+    await this.page.goto(url);
+    await this.page.waitForLoadState("domcontentloaded");
+  }
+
+  async clickOnSampleOrder() {
+    await this.page.getByText("SampleBPMOrderProject").first().click();
+    await this.page
+      .locator("#item_SampleBPMOrderProject")
+      .getByText("SampleBPMOrderProject", { exact: true })
+      .click();
+    await this.page.getByText("SampleBPMOrderProject-Process").click();
+  }
+}
+module.exports = { HomePage };

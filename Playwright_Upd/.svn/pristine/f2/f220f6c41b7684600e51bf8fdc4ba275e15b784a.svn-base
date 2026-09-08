@@ -1,0 +1,486 @@
+import { type Locator, type Page, request, expect } from "@playwright/test";
+import * as utility from "../fixtures/utility";
+
+export class CaseManagerPage {
+  readonly page: Page;
+  readonly caseManager: Locator;
+  readonly cmHeader: Locator;
+  readonly backToCases: Locator;
+  readonly createCase: Locator;
+  readonly refreshCaseTypesIcon: Locator;
+  readonly searchIcon: Locator;
+  readonly filterIcon: Locator;
+  readonly coloumnIcon: Locator;
+  readonly refreshIcon: Locator;
+  readonly tableHeader: Locator;
+  readonly caseColoumnHeader: Locator;
+  readonly caseAvailableColoumnHeader: Locator;
+  readonly caseSelectedColoumnHeader: Locator;
+  readonly availableColoumnTextContents: Locator;
+  readonly selectedColumnsTextContents: Locator;
+  readonly upArrow: Locator;
+  readonly appplyBtn: Locator;
+  readonly cancelBtn: Locator;
+  readonly caseOrder: Locator;
+  readonly additionalOrder: Locator;
+  readonly activeCases: Locator;
+  //  readonly caseTypeName: Locator;
+  readonly clearAllFilters: Locator;
+  readonly caseFilterHeading: Locator;
+  readonly submitBtn: Locator;
+  readonly closeBtn: Locator;
+  readonly documentList: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.caseManager = page.locator("#bpmCaseManager svg");
+    this.caseFilterHeading = page
+      .locator(".card-filter")
+      .locator("[slot='header']");
+    //changed
+    //this.caseColoumnHeader = page.getByText("Cases column selector");
+    this.caseColoumnHeader = page
+      .locator(".dialog.column-selector-dialog")
+      .locator("#title slot");
+    this.caseAvailableColoumnHeader = page.getByText("Available Columns");
+    this.caseSelectedColoumnHeader = page.getByText("Selected Columns");
+    this.cmHeader = page.getByTitle("Case types");
+    this.createCase = page.getByRole("button", { name: "create case" });
+    this.activeCases = page.getByTitle("Active Cases");
+    this.caseOrder = page
+      .locator("twc-list-item")
+      .getByTitle("Order", { exact: true });
+    this.availableColoumnTextContents = page.locator(
+      ".selectedData > .content"
+    );
+    this.additionalOrder = page
+      .locator("twc-list-item")
+      .getByTitle("AdditionalOrder");
+    this.submitBtn = page.getByText("Submit");
+    this.cancelBtn = page.getByText("Cancel");
+    this.closeBtn = page.getByTitle("Close");
+    this.clearAllFilters = page.getByRole("button", {
+      name: "Clear all filters",
+    });
+
+    this.upArrow = page
+      .locator("twc-tooltip")
+      .filter({ hasText: "Move selected item up" })
+      .getByLabel("Settings");
+    this.selectedColumnsTextContents = page.locator(
+      "div > div.selectedData > div > twc-list-view"
+    );
+
+    this.backToCases = page
+      .locator("twc-tooltip")
+      .filter({ hasText: "Back to cases" })
+      .locator("svg");
+    this.coloumnIcon = page.getByLabel("Columns").getByRole("img");
+    this.refreshCaseTypesIcon = page.locator(".refresh-icon");
+    this.filterIcon = page
+      .locator("twc-toolbar-item")
+      .filter({ hasText: "Filter Filter" })
+      .locator("svg");
+    this.searchIcon = page.locator(".search-icon");
+    this.refreshIcon = page
+      .locator(".arrow-clockwise")
+      .locator("svg[class='bi bi-arrow-clockwise']");
+    this.tableHeader = page.locator("twc-table-head");
+    this.appplyBtn = page.getByRole("button", { name: "Apply" });
+    this.documentList = page.locator("slot > twc-list-view");
+  }
+
+  async clickOnSearchCases() {
+    await this.searchIcon.click();
+  }
+  async getTableHeader() {
+    const txt = await this.tableHeader.innerText();
+    return utility.convertStringToArray(txt);
+  }
+  async caseHeader() {
+    return await this.cmHeader.innerText();
+  }
+  async activeCasestxt(): Promise<Locator> {
+    return this.activeCases;
+  }
+  async caseName(caseName: string): Promise<Locator> {
+    return this.page.getByRole("cell", { name: caseName });
+  }
+  async getcaseFilterheading() {
+    return await this.caseFilterHeading.innerText();
+  }
+  async clickOnCaseOrder() {
+    await this.caseOrder.click();
+    await this.page.waitForTimeout(1500);
+  }
+  async clickOnAdditionalOrder() {
+    await this.additionalOrder.click();
+  }
+  async navigateToCaseManager() {
+    await this.caseManager.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(2000);
+  }
+  async clickOnSubmitBtn() {
+    await this.submitBtn.click();
+  }
+
+  async casesRefreshIcon(): Promise<Locator> {
+    return this.refreshIcon;
+  }
+  async getCaseTypeHeaderName(caseName: string) {
+    return await this.page
+      .locator(`twc-header[label='${caseName}']`)
+      .locator(".header__title")
+      .innerText();
+  }
+  async firstRow(): Promise<Locator> {
+    return this.page.locator("twc-table-row").first();
+  }
+  async filterChip(): Promise<Locator> {
+    return this.page.locator("twc-tag");
+  }
+  async caseSearchIcon(): Promise<Locator> {
+    return this.searchIcon;
+  }
+  async caseColoumnIcon(): Promise<Locator> {
+    return this.page.locator("[name='view_column']");
+  }
+  async caseFilterIcon(): Promise<Locator> {
+    return this.filterIcon;
+  }
+
+  async clickUpArrow() {
+    await this.upArrow.click();
+  }
+  async caseTypesRefreshIcon(): Promise<Locator> {
+    return this.refreshCaseTypesIcon;
+  }
+
+  async getActiveCaseDetails(name: string) {
+    const details = await this.page
+      .locator(`twc-table-row[details*='"name":"${name}"']`)
+      .getAttribute("details");
+
+    // return details;
+    if (details) {
+      const data: {
+        casedata: {
+          orderID: string;
+          orderState: string;
+          name: string;
+          product: string;
+          quantity: number;
+          time: string;
+        };
+        metadata: {
+          creationTimestamp: string;
+        };
+      } = JSON.parse(details);
+      return data;
+    }
+  }
+  async verifySearch(value: string) {
+    await this.page.getByRole("textbox").fill(value);
+    await this.page.keyboard.press("Enter");
+    await this.page.waitForTimeout(2000);
+
+    // expect(recievedVal).toContain(value);
+    // expect(this.page.locator("twc-table-row")).toHaveCount(1);
+  }
+  async tableRow(): Promise<Locator> {
+    return this.page.locator("twc-table-row");
+  }
+  async getAvailableColoumnTextContents() {
+    return await this.availableColoumnTextContents.innerText();
+  }
+  async getSelectedColoumnTextContent() {
+    return await this.selectedColumnsTextContents.innerText();
+  }
+  async searchColoumn(): Promise<Locator> {
+    return this.page.getByRole("textbox");
+  }
+  async verifySelectColoumnFromSearch(coloumnName: string) {
+    (await this.searchColoumn()).click();
+    (await this.searchColoumn()).fill(coloumnName);
+    await this.page.waitForTimeout(1000);
+    //await this.page.getByRole("menuitem").nth(1).click();
+    //to check
+    await this.page
+      .locator(".availableData")
+      .locator("twc-list-item")
+      .first()
+      .click();
+  }
+  async selectNameColoumn() {
+    await this.page
+      .locator(".selectedData")
+      .getByText("Name", { exact: true })
+      .click();
+  }
+  async selectActivityNameColoumn() {
+    await this.page
+      .locator(".selectedData")
+      .getByText("Activity Name", { exact: true })
+      .click();
+  }
+  async selectTypeColoumn() {
+    await this.page
+      .locator(".selectedData")
+      .getByText("Type", { exact: true })
+      .click();
+  }
+  async selectPriorityColoumn() {
+    await this.page
+      .locator(".selectedData")
+      .getByText("Priority", { exact: true })
+      .click();
+  }
+  async clickkOnclocseIcon() {
+    await this.page.locator(".bi.bi-x-circle").first().click();
+  }
+  async nameCheckBox(): Promise<Locator> {
+    return this.page
+      .getByRole("menuitem", { name: "Name", exact: true })
+      .locator("twc-checkbox label input");
+  }
+  async activityNameCheckBox(): Promise<Locator> {
+    return this.page
+      .getByRole("menuitem", { name: "Activity Name", exact: true })
+      .locator("twc-checkbox label input");
+  }
+  async typeCheckBox(): Promise<Locator> {
+    return this.page
+      .getByRole("menuitem", { name: "Type", exact: true })
+      .locator("twc-checkbox label input");
+  }
+  async clickkOnCloseIcon() {
+    await this.page.locator(".bi.bi-x-circle").first().click();
+  }
+  async getBackToCases(): Promise<Locator> {
+    return this.backToCases;
+  }
+  async getApplyBtn(): Promise<Locator> {
+    return this.appplyBtn;
+  }
+  async getCancelBtn(): Promise<Locator> {
+    return this.cancelBtn;
+  }
+
+  async caseColoumHeader(): Promise<Locator> {
+    return this.caseColoumnHeader;
+  }
+  async availableColoumnHeader(): Promise<Locator> {
+    return this.caseAvailableColoumnHeader;
+  }
+  async selectedColoumnHeader(): Promise<Locator> {
+    return this.caseSelectedColoumnHeader;
+  }
+
+  async deleteCase(value: string) {
+    // await this.page.getByLabel("More").getByRole("img").click();
+    // await this.page
+    //   .getByRole("menuitem", { name: "DeleteCase" })
+    //   .locator("div")
+    //   .first()
+    //   .click();
+    await this.page.getByRole("button", { name: "DeleteCase" }).click();
+    await this.submitBtn.click();
+  }
+  async updateCase(name: string, orderID: string) {
+    await this.page.getByRole("button", { name: "UpdateCase" }).click();
+    await this.page.getByLabel("Name").fill(name);
+    await this.page.getByLabel("Quantity").fill(orderID);
+    await this.submitBtn.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async clickOnviewCase() {
+    await this.page.getByRole("button", { name: "ViewCase" }).click();
+  }
+  async createNewCase(orderID: string, orderState: string, name: string) {
+    await this.createCase.click();
+    await this.page.getByLabel("Name").fill(name);
+    await this.page.getByLabel("OrderID").fill(orderID);
+    await this.page.getByLabel("OrderState").selectOption(orderState);
+    await this.submitBtn.click();
+    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForTimeout(1000);
+  }
+  async selectFilter(state: string) {
+    await this.page.getByRole("combobox").click();
+    await this.page
+      .getByRole("option", { name: state })
+      .locator("div")
+      .first()
+      .click();
+
+    //calendar
+    await expect(this.page.locator("#filterDate svg")).toBeVisible();
+    expect(this.page.getByRole("button", { name: "Cancel" })).toBeVisible();
+    expect(this.page.getByRole("button", { name: "Apply" })).toBeVisible();
+    await this.page.getByRole("button", { name: "Apply" }).click();
+  }
+  async clickOnCaseFilterIcon() {
+    await this.filterIcon.click();
+  }
+
+  //Case Details
+  //Linked Cases
+  async clickOnLinkedCases() {
+    await this.page.getByText("Linked cases").first().click();
+  }
+  async linkedCaseHeader() {
+    return await this.page
+      .locator("twc-header[label='Linked cases']")
+      .locator(".header__title")
+      .innerText();
+  }
+  async linkedCase(): Promise<Locator> {
+    return this.page.locator("bpme-case-linked-cases").locator("twc-list-item");
+  }
+  async linkedCaseState() {
+    return await this.page
+      .locator(
+        ".component.control.control_AdditionalOrder_caseState1.control-label.control-non-list-mode.read-only"
+      )
+      .innerText();
+  }
+  //Case Details-- Work items
+  async clickOnWorkItems() {
+    await this.page.getByText("Work items").first().click();
+  }
+  async workItemsHeader() {
+    return await this.page
+      .locator("twc-header[label='Work items']")
+      .locator(".header__title")
+      .innerText();
+  }
+  async workItem(): Promise<Locator> {
+    return this.page.locator("bpme-case-work-items").locator("twc-list-item");
+  }
+
+  async closeWorkItem() {
+    await this.page.getByRole("button", { name: "Close" }).click();
+    await this.closeBtn.click();
+  }
+  //Case Details Audit
+  async clickOnAudit() {
+    await this.page.locator("[name='case-audit']").click();
+  }
+  async auditHeader() {
+    return await this.page
+      .locator("twc-header[label='Audit']")
+      .locator(".header__title")
+      .innerText();
+  }
+
+  async auditTextContent() {
+    return await this.page.locator(".audit-template").innerText();
+  }
+  async clickOnDownArrow() {
+    this.page.locator(".bi.bi-chevron-down").click();
+  }
+  //Case Documents
+  async clickOnDocuments() {
+    await this.page.locator("twc-navmenu-item[label='Documents']").click();
+  }
+  async docHeader() {
+    return await this.page
+      .locator("twc-header[label='Documents']")
+      .locator(".header__title")
+      .innerText();
+  }
+  async uploadBtn(): Promise<Locator> {
+    return this.page.locator(".upload-button .button__label");
+  }
+  async docUploadSuccessMsg(docName: string): Promise<Locator> {
+    return this.page.locator(
+      '//div[contains(text(),"Document ' +
+        docName +
+        ' uploaded to the case. You can ")]'
+    );
+  }
+
+  async alertMsg() {
+    return await this.page.locator("twc-alert").textContent();
+  }
+
+  async caseDocumentUpload(desc: string, fileName: string) {
+    (await this.uploadBtn()).click();
+    await this.page.waitForTimeout(500);
+    await this.page.locator("#document-description #input").fill(desc);
+    //uploading doc
+    await this.page.setInputFiles(
+      'input[type="file"]',
+      `./fixtures/${fileName}`
+    );
+    //Upload btn
+    await this.page.locator(".action-buttons twc-button").last().click();
+    await this.page.waitForTimeout(1000);
+    //Done btn
+    await this.page.locator(".cancel-button").click();
+  }
+  async docLists() {
+    return await this.documentList.innerText();
+  }
+  async uploadDocConatinerText() {
+    return await this.page
+      .locator(".upload-dialog-wrapper")
+      .locator("#title")
+      .innerText();
+  }
+  //Delete document
+  async searchDocument(docName: string) {
+    await this.page
+      .locator("bpme-case-documents")
+      .getByRole("textbox")
+      .fill(docName);
+    await this.page
+      .locator("bpme-case-documents")
+      .getByRole("textbox")
+      .press("Enter");
+  }
+  async clickOnDeleteIcon(docName: string) {
+    await this.page
+      .locator("slot > twc-list-view")
+      .filter({ hasText: docName })
+      .locator(".tile-action .menu-item")
+      .last()
+      .click();
+  }
+  async documentDeleteHeader() {
+    return await this.page
+      .locator(".delete-dialog.bpm-designer-scrollbar")
+      .locator("div[slot='labelText']")
+      .innerText();
+  }
+  async delDocumentConfirmationTxt() {
+    return await this.page
+      .locator(".delete-dialog.bpm-designer-scrollbar")
+      .locator("div[slot='bodyHeader']")
+      .innerText();
+  }
+  async clickOnCancelBtn() {
+    await this.page
+      .locator("twc-button[type='button'][slot='cancel'] .button__label")
+      .click();
+  }
+  async clickOnYesDelete() {
+    await this.page
+      .locator("twc-button[type='button'][slot='confirm']")
+      .click();
+    await this.page.waitForTimeout(1000);
+  }
+  async documentConatiner() {
+    return await this.page
+      .locator(".documents-container .empty-label")
+      .innerText();
+  }
+  async cancelButton(): Promise<Locator> {
+    return this.page.locator(".cancel-button");
+  }
+  async chooseFileBtn(): Promise<Locator> {
+    return this.page.locator("#fileInputElement");
+  }
+}

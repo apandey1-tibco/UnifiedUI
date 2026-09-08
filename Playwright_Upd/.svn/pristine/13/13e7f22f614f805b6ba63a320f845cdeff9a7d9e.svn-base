@@ -1,0 +1,71 @@
+import { type Locator, type Page, request } from "@playwright/test";
+import * as utility from "../fixtures/utility";
+
+export class BSPage {
+  readonly page: Page;
+  readonly inputOrderID: Locator;
+  readonly cancelBtn: Locator;
+  readonly submitBtn: Locator;
+  readonly bs: Locator;
+  readonly open: Locator;
+  readonly BSheader: Locator;
+  readonly bsFormHeader: Locator;
+  readonly textField: Locator;
+  readonly intField: Locator;
+  readonly booleanFIeld: Locator;
+  readonly dateField: Locator;
+  readonly dateTimeField: Locator;
+  readonly decimalField: Locator;
+  readonly timeField: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.inputOrderID = page.getByLabel(
+      "label_f1_widget_control_OrderlocalData_orderID"
+    );
+    this.cancelBtn = page.getByTitle("Cancel");
+    this.submitBtn = page.getByTitle("Submit");
+    this.BSheader = page.locator(".header__title");
+    this.bsFormHeader = page.getByText("User Task");
+    this.textField = page.getByLabel("myText");
+    this.intField = page.getByLabel("myInt");
+    this.booleanFIeld = page.getByLabel("myBoolean");
+    this.decimalField = page.getByLabel("myDecimal");
+    this.dateField = page
+      .locator("#f1_widget_control_myDate")
+      .getByRole("textbox");
+    this.timeField = page
+      .locator("#f1_widget_control_myTime")
+      .getByRole("textbox");
+    this.dateTimeField = page
+      .locator(".advanced-TextButtonPanel.control-widget.tf-widget-datetime")
+      .getByRole("button");
+  }
+
+  async clickOnBS() {
+    await this.page.getByText("BS_AllTypes", { exact: true }).click();
+    await this.page.getByText("BS_AllTypes-Start Event").click();
+    await this.page.waitForTimeout(500);
+  }
+  async verifyBSheader() {
+    return this.BSheader.innerText();
+  }
+  async refreshIcon(): Promise<Locator> {
+    return this.page.locator("[tooltipcontent='Refresh']");
+  }
+
+  async enterAllDetails(text: string, num: string, date: string, time: string) {
+    await this.page.waitForLoadState("networkidle");
+    await this.textField.pressSequentially(text, { delay: 100 });
+    await this.intField.fill(num);
+    await this.booleanFIeld.check();
+    await this.dateField.pressSequentially(date, { delay: 150 });
+    await this.timeField.pressSequentially(time, { delay: 100 });
+    //Date time field
+    await this.dateTimeField.click();
+    await this.page.getByRole("button", { name: "OK" }).click();
+    await this.decimalField.fill("4.5");
+    await this.submitBtn.click();
+    await this.page.waitForTimeout(500);
+  }
+}

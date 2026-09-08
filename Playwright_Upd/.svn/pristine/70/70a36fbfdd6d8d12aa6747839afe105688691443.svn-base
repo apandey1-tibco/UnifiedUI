@@ -1,0 +1,16 @@
+import { Browser, chromium, expect, Page } from "@playwright/test";
+//const dataset = JSON.parse(JSON.stringify(require("../utils/TestData.json")));
+async function globalSetup() {
+  const browser: Browser = await chromium.launch({ headless: false });
+  const context = await browser.newContext();
+  const page: Page = await context.newPage();
+  await page.goto("http://10.64.197.35/apps/bpmeapp/#/login");
+  await page.locator('input[type="text"]').fill("tibco-admin");
+  await page.locator('input[type="password"]').fill("secret");
+  await page.getByRole("button", { name: "Sign in" }).click();
+  await page.waitForTimeout(2000);
+  await page.waitForLoadState("networkidle");
+  await page.context().storageState({ path: "./fixtures/auth.json" }); //fixtures\auth.json
+  await browser.close();
+}
+export default globalSetup;
